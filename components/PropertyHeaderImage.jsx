@@ -1,10 +1,9 @@
 import PropertyHeaderImageBlurPlaceholder from '@/components/PropertyHeaderImageBlurPlaceholder';
 
 const PropertyHeaderImage = ({ image, thumbhash }) => {
-    // Use Cloudinary image URL with transformations
     const cloudinaryImage = image.replace(
         'upload/',
-        'upload/f_avif,h_1000,c_fill/'
+        'upload/f_avif,w_1920,c_fill/'
     );
 
     return (

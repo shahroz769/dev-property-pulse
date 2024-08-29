@@ -1,5 +1,4 @@
 'use client';
-
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -33,7 +32,6 @@ const Navbar = () => {
     useEffect(() => {
         const setAuthProviders = async () => {
             if (!providers) {
-                // Avoid fetching providers again if they are already fetched
                 setIsLoadingProviders(true);
                 const res = await getProviders();
                 setProviders(res);

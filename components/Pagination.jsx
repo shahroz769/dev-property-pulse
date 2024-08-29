@@ -9,7 +9,7 @@ import {
     PaginationPrevious,
 } from '@/components/ui/pagination';
 
-const PaginationComponent = ({ page, pageSize, totalItems }) => {
+export default function Component({ page, pageSize, totalItems }) {
     const totalPages = Math.ceil(totalItems / pageSize);
 
     const getPageNumbers = () => {
@@ -50,7 +50,9 @@ const PaginationComponent = ({ page, pageSize, totalItems }) => {
                         as={Link}
                         aria-disabled={page <= 1}
                         className={
-                            page <= 1 ? 'pointer-events-none opacity-50' : ''
+                            page <= 1
+                                ? 'pointer-events-none opacity-50'
+                                : 'hover:bg-gray-100'
                         }
                     />
                 </PaginationItem>
@@ -63,6 +65,11 @@ const PaginationComponent = ({ page, pageSize, totalItems }) => {
                                 href={`/properties?page=${pageNumber}`}
                                 as={Link}
                                 isActive={pageNumber === page}
+                                className={
+                                    pageNumber === page
+                                        ? 'bg-gray-800 hover:bg-gray-700 text-white hover:text-white'
+                                        : 'hover:bg-gray-100'
+                                }
                             >
                                 {pageNumber}
                             </PaginationLink>
@@ -77,13 +84,11 @@ const PaginationComponent = ({ page, pageSize, totalItems }) => {
                         className={
                             page >= totalPages
                                 ? 'pointer-events-none opacity-50'
-                                : ''
+                                : 'hover:bg-gray-100'
                         }
                     />
                 </PaginationItem>
             </PaginationContent>
         </Pagination>
     );
-};
-
-export default PaginationComponent;
+}

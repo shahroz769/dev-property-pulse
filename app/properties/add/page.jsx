@@ -1,17 +1,16 @@
 import PropertyAddForm from '@/components/PropertyAddForm';
+import { Card, CardContent } from '@/components/ui/card';
 
-const PropertyAddPage = () => {
+export default function PropertyAddPage() {
     return (
-        <section className='bg-gray-100 min-h-screen py-12'>
-            <div className='container mx-auto max-w-3xl'>
-                <div className='bg-white shadow-lg rounded-lg overflow-hidden'>
-                    <div className='p-8'>
+        <section className='bg-gray-100 min-h-screen py-4 sm:py-12'>
+            <div className='container mx-auto max-w-4xl px-4'>
+                <Card className='shadow-lg border-0'>
+                    <CardContent className='p-4 sm:p-8'>
                         <PropertyAddForm />
-                    </div>
-                </div>
+                    </CardContent>
+                </Card>
             </div>
         </section>
     );
-};
-
-export default PropertyAddPage;
+}

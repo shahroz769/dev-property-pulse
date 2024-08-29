@@ -9,7 +9,7 @@ const PropertyHeaderImageBlurPlaceholder = ({ src, thumbhash }) => {
             width={0}
             height={0}
             sizes='100vw'
-            className='object-cover h-[400px] w-full hover:opacity-75 transition duration-300 ease-in-out'
+            className='object-cover h-[400px] w-full'
             priority
             unoptimized
             placeholder='blur'

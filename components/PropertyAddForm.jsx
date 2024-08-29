@@ -1,13 +1,28 @@
 'use client';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import addProperty from '@/app/actions/addProperty';
-import { X } from 'lucide-react';
 
-const PropertyAddForm = () => {
+import { useState, useRef } from 'react';
+import { useRouter } from 'next/navigation';
+import { X, Upload } from 'lucide-react';
+import addProperty from '@/app/actions/addProperty';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+export default function PropertyAddForm() {
     const [images, setImages] = useState([]);
     const [isSaving, setIsSaving] = useState(false);
     const router = useRouter();
+    const formRef = useRef(null);
 
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
@@ -25,345 +40,345 @@ const PropertyAddForm = () => {
         e.preventDefault();
         setIsSaving(true);
 
-        const formData = new FormData(e.target);
-
-        // Remove the existing 'images' field from the FormData
+        const formData = new FormData(formRef.current);
         formData.delete('images');
-
-        // Manually append each image to the FormData
         images.forEach((image) => {
             formData.append('images', image);
         });
 
         try {
             await addProperty(formData);
-            // The redirect is handled by the server action
+            // Scroll to top after form submission
+            window.scrollTo(0, 0);
         } catch (error) {
             console.error('Error submitting form:', error);
+        } finally {
             setIsSaving(false);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className='space-y-6'>
-            <h2 className='text-3xl font-bold text-center text-gray-800 mb-8'>
-                Add Property
-            </h2>
+        <form ref={formRef} onSubmit={handleSubmit} className='space-y-6'>
+            <CardHeader className='p-0 sm:p-6'>
+                <CardTitle className='text-2xl sm:text-3xl font-bold text-center text-gray-800'>
+                    Add Property
+                </CardTitle>
+            </CardHeader>
 
-            <div>
-                <label
-                    htmlFor='type'
-                    className='block text-sm font-medium text-gray-700 mb-1'
-                >
-                    Property Type
-                </label>
-                <select
-                    id='type'
-                    name='type'
-                    className='w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-                    required
-                >
-                    <option value='Apartment'>Apartment</option>
-                    <option value='Condo'>Condo</option>
-                    <option value='House'>House</option>
-                    <option value='CabinOrCottage'>Cabin or Cottage</option>
-                    <option value='Room'>Room</option>
-                    <option value='Studio'>Studio</option>
-                    <option value='Other'>Other</option>
-                </select>
-            </div>
-
-            <div>
-                <label
-                    htmlFor='name'
-                    className='block text-sm font-medium text-gray-700 mb-1'
-                >
-                    Listing Name
-                </label>
-                <input
-                    type='text'
-                    id='name'
-                    name='name'
-                    className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-                    placeholder='e.g. Beautiful Apartment In Miami'
-                    required
-                />
-            </div>
-
-            <div>
-                <label
-                    htmlFor='description'
-                    className='block text-sm font-medium text-gray-700 mb-1'
-                >
-                    Description
-                </label>
-                <textarea
-                    id='description'
-                    name='description'
-                    rows='4'
-                    className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-                    placeholder='Add an optional description of your property'
-                ></textarea>
-            </div>
-
-            <div className='bg-gray-50 p-4 rounded-md'>
-                <h3 className='text-lg font-semibold text-gray-700 mb-3'>
-                    Location
-                </h3>
-                <div className='space-y-3'>
-                    <input
-                        type='text'
-                        id='street'
-                        name='location.street'
-                        className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-                        placeholder='Street'
-                    />
-                    <input
-                        type='text'
-                        id='city'
-                        name='location.city'
-                        className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-                        placeholder='City'
-                        required
-                    />
-                    <input
-                        type='text'
-                        id='state'
-                        name='location.state'
-                        className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-                        placeholder='State'
-                        required
-                    />
-                    <input
-                        type='text'
-                        id='zipcode'
-                        name='location.zipcode'
-                        className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-                        placeholder='Zipcode'
-                    />
-                </div>
-            </div>
-
-            <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
-                <div>
-                    <label
-                        htmlFor='beds'
-                        className='block text-sm font-medium text-gray-700 mb-1'
+            <div className='space-y-6'>
+                <div className='space-y-2'>
+                    <Label
+                        htmlFor='type'
+                        className='text-sm font-medium text-gray-700'
                     >
-                        Beds
-                    </label>
-                    <input
-                        type='number'
-                        id='beds'
-                        name='beds'
-                        className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-                        required
-                    />
-                </div>
-                <div>
-                    <label
-                        htmlFor='baths'
-                        className='block text-sm font-medium text-gray-700 mb-1'
-                    >
-                        Baths
-                    </label>
-                    <input
-                        type='number'
-                        id='baths'
-                        name='baths'
-                        className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-                        required
-                    />
-                </div>
-                <div>
-                    <label
-                        htmlFor='square_feet'
-                        className='block text-sm font-medium text-gray-700 mb-1'
-                    >
-                        Square Feet
-                    </label>
-                    <input
-                        type='number'
-                        id='square_feet'
-                        name='square_feet'
-                        className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-                        required
-                    />
-                </div>
-            </div>
-
-            <div>
-                <h3 className='text-lg font-semibold text-gray-700 mb-3'>
-                    Amenities
-                </h3>
-                <div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
-                    {[
-                        'Wifi',
-                        'Full kitchen',
-                        'Washer & Dryer',
-                        'Free Parking',
-                        'Swimming Pool',
-                        'Hot Tub',
-                        '24/7 Security',
-                        'Wheelchair Accessible',
-                        'Elevator Access',
-                        'Dishwasher',
-                        'Gym/Fitness Center',
-                        'Air Conditioning',
-                        'Balcony/Patio',
-                        'Smart TV',
-                        'Coffee Maker',
-                    ].map((amenity) => (
-                        <div key={amenity} className='flex items-center'>
-                            <input
-                                type='checkbox'
-                                id={`amenity_${amenity
-                                    .toLowerCase()
-                                    .replace(/\s/g, '_')}`}
-                                name='amenities'
-                                value={amenity}
-                                className='h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded'
-                            />
-                            <label
-                                htmlFor={`amenity_${amenity
-                                    .toLowerCase()
-                                    .replace(/\s/g, '_')}`}
-                                className='ml-2 text-sm text-gray-700'
-                            >
-                                {amenity}
-                            </label>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            <div className='bg-gray-50 p-4 rounded-md'>
-                <h3 className='text-lg font-semibold text-gray-700 mb-3'>
-                    Rates (Leave blank if not applicable)
-                </h3>
-                <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
-                    {['Weekly', 'Monthly', 'Nightly'].map((rate) => (
-                        <div key={rate}>
-                            <label
-                                htmlFor={`${rate.toLowerCase()}_rate`}
-                                className='block text-sm font-medium text-gray-700 mb-1'
-                            >
-                                {rate}
-                            </label>
-                            <input
-                                type='number'
-                                id={`${rate.toLowerCase()}_rate`}
-                                name={`rates.${rate.toLowerCase()}`}
-                                className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-                            />
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            <div className='space-y-3'>
-                <div>
-                    <label
-                        htmlFor='seller_name'
-                        className='block text-sm font-medium text-gray-700 mb-1'
-                    >
-                        Seller Name
-                    </label>
-                    <input
-                        type='text'
-                        id='seller_name'
-                        name='seller_info.name'
-                        className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-                        placeholder='Name'
-                    />
-                </div>
-                <div>
-                    <label
-                        htmlFor='seller_email'
-                        className='block text-sm font-medium text-gray-700 mb-1'
-                    >
-                        Seller Email
-                    </label>
-                    <input
-                        type='email'
-                        id='seller_email'
-                        name='seller_info.email'
-                        className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-                        placeholder='Email address'
-                        required
-                    />
-                </div>
-                <div>
-                    <label
-                        htmlFor='seller_phone'
-                        className='block text-sm font-medium text-gray-700 mb-1'
-                    >
-                        Seller Phone
-                    </label>
-                    <input
-                        type='tel'
-                        id='seller_phone'
-                        name='seller_info.phone'
-                        className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-                        placeholder='Phone'
-                    />
-                </div>
-            </div>
-
-            <div>
-                <label
-                    htmlFor='images'
-                    className='block text-sm font-medium text-gray-700 mb-1'
-                >
-                    Images (Select up to 4 images)
-                </label>
-                <input
-                    type='file'
-                    id='images'
-                    name='images'
-                    accept='image/*'
-                    multiple
-                    required
-                    onChange={handleImageChange}
-                    className='hidden'
-                />
-                <label
-                    htmlFor='images'
-                    className='cursor-pointer inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
-                >
-                    Select Images
-                </label>
-                <div className='mt-4 grid grid-cols-2 gap-4'>
-                    {images.map((image, index) => (
-                        <div key={index} className='relative'>
-                            <img
-                                src={URL.createObjectURL(image)}
-                                alt={`Preview ${index + 1}`}
-                                className='w-full h-40 object-cover rounded-md'
-                            />
-                            {!isSaving && (
-                                <button
-                                    type='button'
-                                    onClick={() => removeImage(index)}
-                                    className='absolute top-2 right-2 text-white bg-red-500 rounded-full p-1 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500'
+                        Property Type
+                    </Label>
+                    <Select name='type' required>
+                        <SelectTrigger id='type' className='w-full'>
+                            <SelectValue placeholder='Select property type' />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {[
+                                'Apartment',
+                                'Condo',
+                                'House',
+                                'Cabin or Cottage',
+                                'Room',
+                                'Studio',
+                                'Other',
+                            ].map((type) => (
+                                <SelectItem
+                                    key={type}
+                                    value={type
+                                        .toLowerCase()
+                                        .replace(/\s/g, '_')}
                                 >
-                                    <X size={20} />
-                                </button>
-                            )}
+                                    {type}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+
+                <div className='space-y-2'>
+                    <Label
+                        htmlFor='name'
+                        className='text-sm font-medium text-gray-700'
+                    >
+                        Listing Name
+                    </Label>
+                    <Input
+                        id='name'
+                        name='name'
+                        placeholder='e.g. Beautiful Apartment In Miami'
+                        required
+                        className='w-full'
+                    />
+                </div>
+
+                <div className='space-y-2'>
+                    <Label
+                        htmlFor='description'
+                        className='text-sm font-medium text-gray-700'
+                    >
+                        Description
+                    </Label>
+                    <Textarea
+                        id='description'
+                        name='description'
+                        placeholder='Add an optional description of your property'
+                        className='w-full'
+                    />
+                </div>
+
+                <Card>
+                    <CardHeader>
+                        <CardTitle className='text-xl font-semibold text-gray-800'>
+                            Location
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent className='space-y-4'>
+                        <Input
+                            id='street'
+                            name='location.street'
+                            placeholder='Street'
+                            className='w-full'
+                        />
+                        <Input
+                            id='city'
+                            name='location.city'
+                            placeholder='City'
+                            required
+                            className='w-full'
+                        />
+                        <Input
+                            id='state'
+                            name='location.state'
+                            placeholder='State'
+                            required
+                            className='w-full'
+                        />
+                        <Input
+                            id='zipcode'
+                            name='location.zipcode'
+                            placeholder='Zipcode'
+                            className='w-full'
+                        />
+                    </CardContent>
+                </Card>
+
+                <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
+                    {['Beds', 'Baths', 'Square Feet'].map((item) => (
+                        <div key={item} className='space-y-2'>
+                            <Label
+                                htmlFor={item.toLowerCase().replace(/\s/g, '_')}
+                                className='text-sm font-medium text-gray-700'
+                            >
+                                {item}
+                            </Label>
+                            <Input
+                                type='number'
+                                id={item.toLowerCase().replace(/\s/g, '_')}
+                                name={item.toLowerCase().replace(/\s/g, '_')}
+                                required
+                                className='w-full'
+                            />
                         </div>
                     ))}
                 </div>
+
+                <Card>
+                    <CardHeader>
+                        <CardTitle className='text-xl font-semibold text-gray-800'>
+                            Amenities
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
+                            {[
+                                'Wifi',
+                                'Full kitchen',
+                                'Washer & Dryer',
+                                'Free Parking',
+                                'Swimming Pool',
+                                'Hot Tub',
+                                '24/7 Security',
+                                'Wheelchair Accessible',
+                                'Elevator Access',
+                                'Dishwasher',
+                                'Gym/Fitness Center',
+                                'Air Conditioning',
+                                'Balcony/Patio',
+                                'Smart TV',
+                                'Coffee Maker',
+                            ].map((amenity) => (
+                                <div
+                                    key={amenity}
+                                    className='flex items-center space-x-2'
+                                >
+                                    <Checkbox
+                                        id={`amenity_${amenity
+                                            .toLowerCase()
+                                            .replace(/\s/g, '_')}`}
+                                        name='amenities'
+                                        value={amenity}
+                                    />
+                                    <Label
+                                        htmlFor={`amenity_${amenity
+                                            .toLowerCase()
+                                            .replace(/\s/g, '_')}`}
+                                        className='text-sm text-gray-600'
+                                    >
+                                        {amenity}
+                                    </Label>
+                                </div>
+                            ))}
+                        </div>
+                    </CardContent>
+                </Card>
+
+                <Card>
+                    <CardHeader>
+                        <CardTitle className='text-xl font-semibold text-gray-800'>
+                            Rates (Leave blank if not applicable)
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
+                            {['Weekly', 'Monthly', 'Nightly'].map((rate) => (
+                                <div key={rate} className='space-y-2'>
+                                    <Label
+                                        htmlFor={`${rate.toLowerCase()}_rate`}
+                                        className='text-sm font-medium text-gray-700'
+                                    >
+                                        {rate}
+                                    </Label>
+                                    <Input
+                                        type='number'
+                                        id={`${rate.toLowerCase()}_rate`}
+                                        name={`rates.${rate.toLowerCase()}`}
+                                        className='w-full'
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </CardContent>
+                </Card>
+
+                <Card>
+                    <CardHeader>
+                        <CardTitle className='text-xl font-semibold text-gray-800'>
+                            Seller Information
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent className='space-y-4'>
+                        <div className='space-y-2'>
+                            <Label
+                                htmlFor='seller_name'
+                                className='text-sm font-medium text-gray-700'
+                            >
+                                Seller Name
+                            </Label>
+                            <Input
+                                id='seller_name'
+                                name='seller_info.name'
+                                placeholder='Name'
+                                className='w-full'
+                            />
+                        </div>
+                        <div className='space-y-2'>
+                            <Label
+                                htmlFor='seller_email'
+                                className='text-sm font-medium text-gray-700'
+                            >
+                                Seller Email
+                            </Label>
+                            <Input
+                                id='seller_email'
+                                name='seller_info.email'
+                                type='email'
+                                placeholder='Email address'
+                                required
+                                className='w-full'
+                            />
+                        </div>
+                        <div className='space-y-2'>
+                            <Label
+                                htmlFor='seller_phone'
+                                className='text-sm font-medium text-gray-700'
+                            >
+                                Seller Phone
+                            </Label>
+                            <Input
+                                id='seller_phone'
+                                name='seller_info.phone'
+                                type='tel'
+                                placeholder='Phone'
+                                className='w-full'
+                            />
+                        </div>
+                    </CardContent>
+                </Card>
+
+                <div className='space-y-2'>
+                    <Label
+                        htmlFor='images'
+                        className='text-sm font-medium text-gray-700 block sm:inline-block sm:mr-4'
+                    >
+                        Images (Select up to 4 images)
+                    </Label>
+                    <Input
+                        id='images'
+                        name='images'
+                        type='file'
+                        accept='image/*'
+                        multiple
+                        required
+                        onChange={handleImageChange}
+                        className='hidden'
+                        disabled={isSaving}
+                    />
+                    <Label
+                        htmlFor='images'
+                        className={`cursor-pointer inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+                            isSaving ? 'opacity-50 cursor-not-allowed' : ''
+                        }`}
+                    >
+                        <Upload className='w-5 h-5 mr-2' />
+                        Select Images
+                    </Label>
+                    <div className='mt-4 grid grid-cols-2 gap-4'>
+                        {images.map((image, index) => (
+                            <div key={index} className='relative'>
+                                <img
+                                    src={URL.createObjectURL(image)}
+                                    alt={`Preview ${index + 1}`}
+                                    className='w-full h-60 object-cover rounded-md'
+                                />
+                                {!isSaving && (
+                                    <Button
+                                        type='button'
+                                        onClick={() => removeImage(index)}
+                                        variant='destructive'
+                                        size='icon'
+                                        className='absolute top-2 right-2 bg-red-500 hover:bg-red-600 rounded-full'
+                                    >
+                                        <X className='h-4 w-4' />
+                                    </Button>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
 
-            <button
-                className='w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200 disabled:bg-blue-400 disabled:cursor-not-allowed'
+            <Button
+                className='w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-md transition-colors duration-300'
                 type='submit'
                 disabled={isSaving}
             >
                 {isSaving ? 'Adding Property...' : 'Add Property'}
-            </button>
+            </Button>
         </form>
     );
-};
-
-export default PropertyAddForm;
+}
