@@ -1,14 +1,19 @@
-/**
- * Converts a Mongoose lean document into a serializable plain JavaScript object.
- *
- * @param {Object} leanDocument - The Mongoose lean document to be converted.
- * @returns {Object} A plain JavaScript object that is a serializable representation of the input document.
- */
-
 export function convertToSerializeableObject(leanDocument) {
-  for (const key of Object.keys(leanDocument)) {
-    if (leanDocument[key].toJSON && leanDocument[key].toString)
-      leanDocument[key] = leanDocument[key].toString();
-  }
-  return leanDocument;
+    const plainObject = JSON.parse(JSON.stringify(leanDocument));
+
+    function replaceObjectIdWithString(obj) {
+        for (const key in obj) {
+            if (
+                obj[key] instanceof Object &&
+                obj[key]._bsontype === 'ObjectID'
+            ) {
+                obj[key] = obj[key].toString();
+            } else if (typeof obj[key] === 'object') {
+                replaceObjectIdWithString(obj[key]);
+            }
+        }
+    }
+
+    replaceObjectIdWithString(plainObject);
+    return plainObject;
 }
