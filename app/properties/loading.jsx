@@ -48,18 +48,20 @@ function PropertyCardSkeleton() {
             <div className='p-4'>
                 <Skeleton className='bg-gray-200 w-20 h-6 mb-2' />
                 <Skeleton className='bg-gray-200 w-3/4 h-6 mb-4' />
-                <div className='flex justify-center items-center gap-6 mb-4'>
-                    <Skeleton className='bg-gray-200 w-16 h-6' />
-                    <Skeleton className='bg-gray-200 w-16 h-6' />
-                    <Skeleton className='bg-gray-200 w-16 h-6' />
-                </div>
-                <div className='flex justify-center items-center gap-6 mb-4'>
-                    <Skeleton className='bg-gray-200 w-20 h-6' />
-                    <Skeleton className='bg-gray-200 w-20 h-6' />
+                <div className='flex flex-col items-center gap-4 mb-4'>
+                    <div className='flex justify-center items-center gap-6 text-gray-500'>
+                        <Skeleton className='bg-gray-200 w-16 h-6' />
+                        <Skeleton className='bg-gray-200 w-16 h-6' />
+                        <Skeleton className='bg-gray-200 w-16 h-6' />
+                    </div>
+                    <div className='flex justify-center items-center gap-6 text-green-600'>
+                        <Skeleton className='bg-gray-200 w-20 h-6' />
+                        <Skeleton className='bg-gray-200 w-20 h-6' />
+                    </div>
                 </div>
                 <Skeleton className='bg-gray-200 w-full h-[1px] my-4' />
-                <div className='flex flex-col sm:flex-row justify-between items-center'>
-                    <Skeleton className='bg-gray-200 w-32 h-6 mb-4 sm:mb-0' />
+                <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4'>
+                    <Skeleton className='bg-gray-200 w-full sm:w-32 h-6' />
                     <Skeleton className='bg-gray-200 w-full sm:w-32 h-10 rounded-lg' />
                 </div>
             </div>

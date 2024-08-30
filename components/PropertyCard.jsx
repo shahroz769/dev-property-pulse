@@ -85,8 +85,8 @@ const PropertyCard = ({ property, index = 3, home }) => {
 
                 <div className='border-t border-gray-200 my-4'></div>
 
-                <div className='flex flex-col sm:flex-row justify-between items-center'>
-                    <div className='flex items-center mb-4 sm:mb-0'>
+                <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4'>
+                    <div className='flex items-center'>
                         <MapPin className='text-orange-700 mr-2 h-5 w-5' />
                         <span className='text-orange-700'>
                             {property.location.city}, {property.location.state}
@@ -94,7 +94,7 @@ const PropertyCard = ({ property, index = 3, home }) => {
                     </div>
                     <Button
                         asChild
-                        className='bg-blue-500 hover:bg-blue-600 text-white'
+                        className='bg-blue-500 hover:bg-blue-600 text-white w-full sm:w-auto'
                     >
                         <Link href={`/properties/${property._id}`}>
                             View Details
