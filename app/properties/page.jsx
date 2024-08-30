@@ -6,7 +6,6 @@ import connectDB from '@/config/database';
 
 const PropertiesPage = async ({ searchParams: { pageSize = 9, page = 1 } }) => {
     await connectDB();
-
     const skip = (page - 1) * pageSize;
 
     const total = await Property.countDocuments({});
@@ -22,8 +21,8 @@ const PropertiesPage = async ({ searchParams: { pageSize = 9, page = 1 } }) => {
                     <PropertySearchForm />
                 </div>
             </section>
-            <section className='px-4 py-6'>
-                <div className='container-xl lg:container m-auto px-4 py-6'>
+            <section className='px-4 pt-6 pb-10'>
+                <div className='container-xl lg:container m-auto px-4 pt-6'>
                     <h1 className='text-2xl mb-4'>Browse Properties</h1>
                     {properties.length === 0 ? (
                         <p>No properties found</p>

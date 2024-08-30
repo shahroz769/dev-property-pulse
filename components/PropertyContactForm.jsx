@@ -1,13 +1,17 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
 import { useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
 import addMessage from '@/app/actions/addMessage';
-import SubmitMessageButton from '@/components/SubmitMessageButton';
+import SubmitMessageButton from './SubmitMessageButton';
 
-const PropertyContactForm = ({ property }) => {
+export default function PropertyContactForm({ property }) {
     const { data: session, status } = useSession();
     const [state, formAction] = useFormState(addMessage, {});
     const [isLoading, setIsLoading] = useState(true);
@@ -25,23 +29,19 @@ const PropertyContactForm = ({ property }) => {
 
     if (isLoading) {
         return (
-            <div className='bg-white rounded-lg shadow-lg overflow-hidden'>
-                <div className='p-6 space-y-6'>
-                    <Skeleton className='bg-gray-200 h-8 w-3/4 mb-8' />
-                    <div className='space-y-6'>
-                        {[...Array(3)].map((_, index) => (
-                            <div key={index}>
-                                <Skeleton className='bg-gray-200 h-4 w-1/4 mb-2' />
-                                <Skeleton className='bg-gray-200 h-10 w-full' />
-                            </div>
-                        ))}
-                        <div>
-                            <Skeleton className='bg-gray-200 h-4 w-1/4 mb-2' />
-                            <Skeleton className='bg-gray-200 h-24 w-full' />
-                        </div>
-                        <Skeleton className='bg-gray-200 h-10 w-full' />
+            <div className='bg-white rounded-lg shadow-lg overflow-hidden p-6 space-y-6'>
+                <Skeleton className='h-8 w-3/4 mb-8' />
+                {[...Array(3)].map((_, index) => (
+                    <div key={index} className='space-y-2'>
+                        <Skeleton className='h-4 w-1/4' />
+                        <Skeleton className='h-10 w-full' />
                     </div>
+                ))}
+                <div className='space-y-2'>
+                    <Skeleton className='h-4 w-1/4' />
+                    <Skeleton className='h-24 w-full' />
                 </div>
+                <Skeleton className='h-10 w-full' />
             </div>
         );
     }
@@ -91,47 +91,33 @@ const PropertyContactForm = ({ property }) => {
                     />
 
                     {['name', 'email', 'phone'].map((field) => (
-                        <div key={field}>
-                            <label
-                                htmlFor={field}
-                                className='block text-sm font-medium text-gray-700 mb-1'
-                            >
+                        <div key={field} className='space-y-2'>
+                            <Label htmlFor={field}>
                                 {field.charAt(0).toUpperCase() + field.slice(1)}
-                            </label>
-                            <input
+                            </Label>
+                            <Input
                                 id={field}
                                 name={field}
                                 type={field === 'email' ? 'email' : 'text'}
-                                className='w-full px-3 py-2 text-gray-700 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300'
                                 placeholder={`Enter your ${field}`}
                                 required={field !== 'phone'}
                             />
                         </div>
                     ))}
 
-                    <div>
-                        <label
-                            htmlFor='message'
-                            className='block text-sm font-medium text-gray-700 mb-1'
-                        >
-                            Message
-                        </label>
-                        <textarea
+                    <div className='space-y-2'>
+                        <Label htmlFor='message'>Message</Label>
+                        <Textarea
                             id='message'
                             name='message'
                             rows={4}
-                            className='w-full px-3 py-2 text-gray-700 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 resize-none'
                             placeholder='Enter your message'
-                        ></textarea>
+                        />
                     </div>
 
-                    <div>
-                        <SubmitMessageButton />
-                    </div>
+                    <SubmitMessageButton />
                 </form>
             </div>
         </div>
     );
-};
-
-export default PropertyContactForm;
+}

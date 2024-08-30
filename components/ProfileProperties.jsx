@@ -65,9 +65,8 @@ export default function Component({ properties: initialProperties }) {
                             Are you sure?
                         </AlertDialogTitle>
                         <AlertDialogDescription className='text-gray-600'>
-                            This action cannot be undone. Deleting this
-                            property is permanent. Are you sure you want to
-                            proceed?
+                            This action cannot be undone. Deleting this property
+                            is permanent. Are you sure you want to proceed?
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>

@@ -11,9 +11,6 @@ export default function Loading() {
                             <PropertyCardSkeleton key={index} />
                         ))}
                     </div>
-                    <div className='mt-8 flex justify-center'>
-                        <Skeleton className='bg-gray-200 w-64 h-10 rounded-lg' />
-                    </div>
                 </div>
             </section>
         </>

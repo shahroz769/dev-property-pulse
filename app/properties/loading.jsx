@@ -8,15 +8,15 @@ export default function Loading() {
                     <SearchFormSkeleton />
                 </div>
             </section>
-            <section className='px-4 py-6'>
-                <div className='container-xl lg:container m-auto px-4 py-6'>
+            <section className='px-4 pt-6 pb-10'>
+                <div className='container-xl lg:container m-auto px-4 pt-6'>
                     <Skeleton className='bg-gray-200 w-48 h-8 mb-4' />
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                         {[...Array(9)].map((_, index) => (
                             <PropertyCardSkeleton key={index} />
                         ))}
                     </div>
-                    <div className='mt-8 flex justify-center'>
+                    <div className='mt-10 flex justify-center'>
                         <Skeleton className='bg-gray-200 w-64 h-10 rounded-lg' />
                     </div>
                 </div>

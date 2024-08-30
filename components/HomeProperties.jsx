@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import PropertyCard from './PropertyCard';
 import connectDB from '@/config/database';
@@ -36,12 +37,13 @@ const HomeProperties = async () => {
             </section>
 
             <section className='m-auto max-w-lg my-10 px-6'>
-                <Link
-                    href='/properties'
-                    className='block bg-gray-900 text-white text-center py-4 px-6 rounded-xl hover:bg-gray-700'
+                <Button
+                    asChild
+                    size='lg'
+                    className='w-full bg-gray-900 hover:bg-gray-700 text-white'
                 >
-                    View All Properties
-                </Link>
+                    <Link href='/properties'>View All Properties</Link>
+                </Button>
             </section>
         </>
     );

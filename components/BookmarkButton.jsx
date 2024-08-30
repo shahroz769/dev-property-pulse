@@ -1,12 +1,14 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
+import { toast } from 'react-toastify';
+import { Bookmark, Loader2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import bookmarkProperty from '@/app/actions/bookmarkProperty';
 import checkBookmarkStatus from '@/app/actions/checkBookmarkStatus';
-import { toast } from 'react-toastify';
-import { Bookmark } from 'lucide-react';
 
-const BookmarkButton = ({ property }) => {
+export default function BookmarkButton({ property }) {
     const { data: session } = useSession();
     const userId = session?.user?.id;
     const [isBookmarked, setIsBookmarked] = useState(false);
@@ -31,33 +33,37 @@ const BookmarkButton = ({ property }) => {
             return;
         }
 
+        setLoading(true);
         bookmarkProperty(property._id).then((res) => {
-            if (res.error) return toast.error(res.error);
-            setIsBookmarked(res.isBookmarked);
-            toast.success(res.message);
+            if (res.error) {
+                toast.error(res.error);
+            } else {
+                setIsBookmarked(res.isBookmarked);
+                toast.success(res.message);
+            }
+            setLoading(false);
         });
     };
 
-    if (loading)
-        return (
-            <div className='w-full h-10 bg-gray-200 rounded-md animate-pulse'></div>
-        );
-
     return (
-        <button
+        <Button
             onClick={handleClick}
-            className={`w-full py-2 px-4 rounded-md flex items-center justify-center transition duration-300 ease-in-out ${
-                isBookmarked
-                    ? 'bg-red-500 hover:bg-red-600 text-white'
-                    : 'bg-blue-500 hover:bg-blue-600 text-white'
-            }`}
+            variant={isBookmarked ? 'destructive' : 'default'}
+            className='w-full'
+            disabled={loading}
         >
-            <Bookmark className='mr-2 h-5 w-5' />
-            <span className='font-semibold'>
-                {isBookmarked ? 'Remove Bookmark' : 'Bookmark Property'}
+            {loading ? (
+                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+            ) : (
+                <Bookmark className='mr-2 h-4 w-4' />
+            )}
+            <span>
+                {loading
+                    ? 'Processing...'
+                    : isBookmarked
+                    ? 'Remove Bookmark'
+                    : 'Bookmark Property'}
             </span>
-        </button>
+        </Button>
     );
-};
-
-export default BookmarkButton;
+}

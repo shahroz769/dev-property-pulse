@@ -42,7 +42,7 @@ export default function Component({ page, pageSize, totalItems }) {
     };
 
     return (
-        <Pagination>
+        <Pagination className='mt-10'>
             <PaginationContent>
                 <PaginationItem>
                     <PaginationPrevious

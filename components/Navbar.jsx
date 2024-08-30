@@ -117,7 +117,7 @@ const Navbar = () => {
                             <div className='hidden md:flex md:items-center md:space-x-4'>
                                 <Link
                                     href='/messages'
-                                    className='text-white hover:text-blue-200 bg-gray-700 hover:bg-gray-600 rounded-full p-2 transition duration-300'
+                                    className='text-white bg-gray-700 hover:bg-gray-600 rounded-full p-2 transition duration-300'
                                 >
                                     <div className='relative'>
                                         <svg

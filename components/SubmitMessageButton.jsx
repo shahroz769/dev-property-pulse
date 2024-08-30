@@ -1,18 +1,18 @@
 import { useFormStatus } from 'react-dom';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, Loader2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
-const SubmitMessageButton = () => {
+export default function SubmitMessageButton() {
     const { pending } = useFormStatus();
-    return (
-        <button
-            className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md w-full focus:outline-none focus:shadow-outline flex items-center justify-center'
-            type='submit'
-            disabled={pending}
-        >
-            <MessageCircle className='mr-2' />{' '}
-            {pending ? 'Sending...' : 'Send Message'}
-        </button>
-    );
-};
 
-export default SubmitMessageButton;
+    return (
+        <Button className='w-full' type='submit' disabled={pending}>
+            {pending ? (
+                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+            ) : (
+                <MessageCircle className='mr-2 h-4 w-4' />
+            )}
+            {pending ? 'Sending...' : 'Send Message'}
+        </Button>
+    );
+}

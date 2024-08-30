@@ -37,7 +37,7 @@ export default function Component({ property, onDelete, index }) {
             </div>
             <div className='p-4'>
                 <div className='mb-4'>
-                    <div className='inline-block bg-gray-200 text-gray-800 text-xs px-2 py-1 rounded-full font-semibold mb-2'>
+                    <div className='inline-block text-blue-600 bg-blue-100 text-xs px-2 py-1 rounded-full font-semibold mb-2'>
                         {property.type}
                     </div>
                     <h3 className='text-xl font-bold'>{property.name}</h3>
@@ -58,18 +58,6 @@ export default function Component({ property, onDelete, index }) {
                             {property.square_feet}
                             <span className='ml-1'>sqft</span>
                         </p>
-                    </div>
-                    <div className='flex justify-center items-center gap-6 text-green-600'>
-                        {property.rates.weekly && (
-                            <p className='flex items-center'>
-                                <DollarSign className='mr-1 h-5 w-5' /> Weekly
-                            </p>
-                        )}
-                        {property.rates.monthly && (
-                            <p className='flex items-center'>
-                                <DollarSign className='mr-1 h-5 w-5' /> Monthly
-                            </p>
-                        )}
                     </div>
                 </div>
 

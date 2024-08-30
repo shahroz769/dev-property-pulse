@@ -3,16 +3,14 @@ import InfoBox from '@/components/InfoBox';
 const InfoBoxes = () => {
     return (
         <section>
-            <div className='container-xl lg:container m-auto'>
+            <div className='container-xl lg:container mx-auto'>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-lg mb-4'>
                     <InfoBox
                         heading='For Renters'
                         backgroundColor='bg-gray-100'
-                        buttonInfo={{
-                            text: 'Browse Properties',
-                            link: '/properties',
-                            backgroundColor: 'bg-gray-900',
-                        }}
+                        buttonText='Browse Properties'
+                        buttonLink='/properties'
+                        buttonClassName='bg-gray-900 hover:bg-gray-700 text-white'
                     >
                         Find your dream rental property. Bookmark properties and
                         contact owners.
@@ -20,11 +18,9 @@ const InfoBoxes = () => {
                     <InfoBox
                         heading='For Property Owners'
                         backgroundColor='bg-blue-100'
-                        buttonInfo={{
-                            text: 'Add Property',
-                            link: '/properties/add',
-                            backgroundColor: 'bg-blue-500',
-                        }}
+                        buttonText='Add Property'
+                        buttonLink='/properties/add'
+                        buttonClassName='bg-blue-500 hover:bg-blue-600 text-white'
                     >
                         List your properties and reach potential tenants. Rent
                         as an Airbnb or long term.
@@ -34,4 +30,5 @@ const InfoBoxes = () => {
         </section>
     );
 };
+
 export default InfoBoxes;

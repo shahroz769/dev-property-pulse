@@ -126,7 +126,7 @@ function HomePropertiesSkeleton() {
             </section>
 
             <section className='m-auto max-w-lg my-10 px-6'>
-                <Skeleton className='bg-gray-200 h-12 w-full rounded-xl' />
+                <Skeleton className='bg-gray-200 h-11 w-full rounded-xl' />
             </section>
         </>
     );
