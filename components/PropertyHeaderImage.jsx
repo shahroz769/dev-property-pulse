@@ -1,19 +1,18 @@
-import CldImage from '@/components/CldImage';
+import PropertyHeaderImageBlurPlaceholder from '@/components/PropertyHeaderImageBlurPlaceholder';
 
 const PropertyHeaderImage = ({ image, thumbhash }) => {
+    const cloudinaryImage = image.replace(
+        'upload/',
+        'upload/w_1920,c_fill/'
+    );
+
     return (
         <section>
             <div className='container-xl m-auto'>
                 <div className='grid grid-cols-1'>
-                    <CldImage
-                        src={image}
-                        alt='Property Banner'
-                        width={0}
-                        height={0}
-                        sizes='100vw'
-                        priority={true}
+                    <PropertyHeaderImageBlurPlaceholder
+                        src={cloudinaryImage}
                         thumbhash={thumbhash}
-                        className='object-cover h-[400px] w-full'
                     />
                 </div>
             </div>

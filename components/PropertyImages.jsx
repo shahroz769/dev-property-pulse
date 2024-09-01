@@ -8,16 +8,18 @@ const PropertyImages = ({ images }) => {
         if (typeof image === 'object' && image.url && image.thumbhash) {
             let thumbnailTransformation;
             if (images.length === 1 || (images.length === 3 && index === 2)) {
-                thumbnailTransformation = 'upload/f_avif,w_1336,h_800,c_fill/';
+                thumbnailTransformation =
+                    'upload/f_avif,w_1336,h_800,c_fill,g_auto/';
             } else {
-                thumbnailTransformation = 'upload/f_avif,w_668,h_400,c_fill/';
+                thumbnailTransformation =
+                    'upload/f_avif,w_668,h_400,c_fill,g_auto/';
             }
 
             return {
                 ...image,
                 url: image.url.replace(
                     'upload/',
-                    'upload/f_avif,w_1336,h_800,c_fill/'
+                    'upload/f_avif,w_1336,h_800,c_fill,g_auto/'
                 ),
                 thumbnailUrl: image.url.replace(
                     'upload/',
@@ -46,7 +48,7 @@ const PropertyImages = ({ images }) => {
                                     ref={ref}
                                     onClick={open}
                                     src={cloudinaryImages[0].thumbnailUrl}
-                                    alt=''
+                                    alt='Property'
                                     className='object-cover h-[400px] cursor-pointer mx-auto rounded-xl hover:opacity-75 transition duration-300 ease-in-out'
                                     width={1800}
                                     height={400}
@@ -82,11 +84,10 @@ const PropertyImages = ({ images }) => {
                                                 ref={ref}
                                                 onClick={open}
                                                 src={image.thumbnailUrl}
-                                                alt=''
+                                                alt='Property'
                                                 className='object-cover h-[400px] w-full rounded-xl cursor-pointer hover:opacity-75 transition duration-300 ease-in-out'
                                                 width={0}
                                                 height={0}
-                                                sizes='100vw'
                                                 unoptimized
                                                 placeholder='blur'
                                                 blurDataURL={image.blurDataURL}

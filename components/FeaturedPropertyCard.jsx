@@ -19,7 +19,7 @@ const FeaturedPropertyCard = ({ property }) => {
 
     const transformedImage = cloudinaryImage.replace(
         'upload/',
-        'upload/f_avif,w_496,h_300,c_fill/'
+        'upload/h_300,c_fill/'
     );
 
     return (

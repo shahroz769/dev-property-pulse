@@ -19,14 +19,14 @@ const PropertyCard = ({ property, index = 3, home }) => {
     if (home) {
         shouldPrioritize = false;
     } else {
-        shouldPrioritize = index < 6;
+        shouldPrioritize = index < 3;
     }
 
     const { url: cloudinaryImage, thumbhash } = property.images[0];
 
     const transformedImage = cloudinaryImage.replace(
         'upload/',
-        'upload/f_avif,w_496,h_300,c_fill/'
+        'upload/w_430,h_300,c_fill/'
     );
 
     return (

@@ -16,7 +16,7 @@ export default function Component({ property, onDelete, index }) {
     const { url: cloudinaryImage, thumbhash } = property.images[0];
     const transformedImage = cloudinaryImage.replace(
         'upload/',
-        'upload/f_avif,w_496,h_300,c_fill/'
+        'upload/w_430,h_300,c_fill/'
     );
 
     return (
