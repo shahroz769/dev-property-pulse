@@ -3,7 +3,7 @@ import PropertyHeaderImageBlurPlaceholder from '@/components/PropertyHeaderImage
 const PropertyHeaderImage = ({ image, thumbhash }) => {
     const cloudinaryImage = image.replace(
         'upload/',
-        'upload/w_1920,c_fill/'
+        'upload/f_avif,w_1920,c_fill/'
     );
 
     return (

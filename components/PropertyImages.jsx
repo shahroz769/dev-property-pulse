@@ -8,18 +8,16 @@ const PropertyImages = ({ images }) => {
         if (typeof image === 'object' && image.url && image.thumbhash) {
             let thumbnailTransformation;
             if (images.length === 1 || (images.length === 3 && index === 2)) {
-                thumbnailTransformation =
-                    'upload/f_avif,w_1336,h_800,c_fill,g_auto/';
+                thumbnailTransformation = 'upload/f_avif,w_1336,h_800,c_fill/';
             } else {
-                thumbnailTransformation =
-                    'upload/f_avif,w_668,h_400,c_fill,g_auto/';
+                thumbnailTransformation = 'upload/f_avif,w_668,h_400,c_fill/';
             }
 
             return {
                 ...image,
                 url: image.url.replace(
                     'upload/',
-                    'upload/f_avif,w_1336,h_800,c_fill,g_auto/'
+                    'upload/f_avif,w_1336,h_800,c_fill/'
                 ),
                 thumbnailUrl: image.url.replace(
                     'upload/',

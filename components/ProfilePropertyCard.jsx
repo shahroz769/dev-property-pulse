@@ -11,12 +11,12 @@ import {
 import PropertyCardBlurPlaceholder from '@/components/PropertyCardBlurPlaceholder';
 
 export default function Component({ property, onDelete, index }) {
-    const shouldPrioritize = index < 6;
+    const shouldPrioritize = index < 3;
 
     const { url: cloudinaryImage, thumbhash } = property.images[0];
     const transformedImage = cloudinaryImage.replace(
         'upload/',
-        'upload/w_430,h_300,c_fill/'
+        'upload/f_avif,w_496,h_300,c_fill/'
     );
 
     return (

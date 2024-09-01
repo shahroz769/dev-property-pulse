@@ -20,10 +20,6 @@ const nextConfig = {
                 pathname: '**',
             },
         ],
-        formats: ['image/avif', 'image/webp'],
-        deviceSizes: [
-            350, 420, 500, 640, 768, 900, 1024, 1200, 1440, 1920, 2048, 3840,
-        ],
     },
 };
 

@@ -26,7 +26,7 @@ const PropertyCard = ({ property, index = 3, home }) => {
 
     const transformedImage = cloudinaryImage.replace(
         'upload/',
-        'upload/w_430,h_300,c_fill/'
+        'upload/f_avif,w_496,h_300,c_fill/'
     );
 
     return (
