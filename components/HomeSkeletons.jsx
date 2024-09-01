@@ -1,17 +1,6 @@
 import { Skeleton } from '@/components/ui/skeleton';
 
-export default function Loading() {
-    return (
-        <>
-            <HeroSkeleton />
-            <InfoBoxesSkeleton />
-            <FeaturedPropertiesSkeleton />
-            <HomePropertiesSkeleton />
-        </>
-    );
-}
-
-function HeroSkeleton() {
+export function HeroSkeleton() {
     return (
         <section className='bg-blue-700 py-20 mb-4'>
             <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center'>
@@ -33,13 +22,16 @@ function HeroSkeleton() {
     );
 }
 
-function InfoBoxesSkeleton() {
+export function InfoBoxesSkeleton() {
     return (
         <section>
             <div className='container-xl lg:container m-auto'>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-lg mb-4'>
                     {[...Array(2)].map((_, index) => (
-                        <div key={index} className='p-6 rounded-lg bg-slate-100'>
+                        <div
+                            key={index}
+                            className='p-6 rounded-lg bg-slate-100'
+                        >
                             <Skeleton className='bg-slate-200 h-8 w-1/2 mb-4' />
                             <Skeleton className='bg-slate-200 h-4 w-full mb-2' />
                             <Skeleton className='bg-slate-200 h-4 w-3/4 mb-4' />
@@ -52,7 +44,7 @@ function InfoBoxesSkeleton() {
     );
 }
 
-function FeaturedPropertiesSkeleton() {
+export function FeaturedPropertiesSkeleton() {
     return (
         <section className='bg-blue-50 px-4 pt-6 pb-10'>
             <div className='container-xl lg:container m-auto'>
@@ -111,7 +103,7 @@ function FeaturedPropertyCardSkeleton() {
     );
 }
 
-function HomePropertiesSkeleton() {
+export function HomePropertiesSkeleton() {
     return (
         <>
             <section className='px-4 pt-6'>

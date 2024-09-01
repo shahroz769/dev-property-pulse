@@ -2,6 +2,24 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
+export default function Loading() {
+    return (
+        <>
+            <HeaderImageSkeleton />
+            <BackToPropertiesLink />
+            <section className='bg-blue-50'>
+                <div className='container m-auto py-10 px-6'>
+                    <div className='grid grid-cols-1 md:grid-cols-70/30 w-full gap-6'>
+                        <PropertyDetailsSkeleton />
+                        <SidebarSkeleton />
+                    </div>
+                </div>
+            </section>
+            <PropertyImagesSkeleton />
+        </>
+    );
+}
+
 const HeaderImageSkeleton = () => (
     <section>
         <div className='container-xl m-auto'>
@@ -132,21 +150,3 @@ const PropertyImagesSkeleton = () => (
         </div>
     </section>
 );
-
-export default function Loading() {
-    return (
-        <>
-            <HeaderImageSkeleton />
-            <BackToPropertiesLink />
-            <section className='bg-blue-50'>
-                <div className='container m-auto py-10 px-6'>
-                    <div className='grid grid-cols-1 md:grid-cols-70/30 w-full gap-6'>
-                        <PropertyDetailsSkeleton />
-                        <SidebarSkeleton />
-                    </div>
-                </div>
-            </section>
-            <PropertyImagesSkeleton />
-        </>
-    );
-}

@@ -19,7 +19,7 @@ export default function Loading() {
 
 function PropertyCardSkeleton() {
     return (
-        <div className='rounded-xl shadow-md relative bg-white'>
+        <div className='rounded-xl relative bg-slate-50'>
             <Skeleton className='bg-slate-200 w-full h-[300px] rounded-t-xl' />
             <div className='p-4'>
                 <Skeleton className='bg-slate-200 w-20 h-6 mb-2' />
