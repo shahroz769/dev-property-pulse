@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const InfoBox = ({
     heading,
-    backgroundColor = 'bg-gray-100',
+    backgroundColor = 'bg-slate-100',
     textColor = 'text-gray-800',
     buttonText,
     buttonLink,

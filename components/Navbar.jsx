@@ -97,7 +97,7 @@ const Navbar = () => {
                     <div className='flex items-center'>
                         {isLoading ? (
                             <div className='hidden md:flex items-center space-x-4'>
-                                <div className='w-24 h-8 bg-gray-300 animate-pulse rounded'></div>
+                                <div className='w-24 h-8 bg-slate-300 animate-pulse rounded'></div>
                             </div>
                         ) : !session ? (
                             <div className='hidden md:flex'>
@@ -106,7 +106,7 @@ const Navbar = () => {
                                         <button
                                             key={provider.name}
                                             onClick={() => signIn(provider.id)}
-                                            className='flex items-center text-white bg-gray-700 hover:bg-gray-600 text-sm hover:text-white rounded-md px-3 py-2 transition duration-300'
+                                            className='flex items-center text-white bg-slate-700 hover:bg-slate-600 text-sm hover:text-white rounded-md px-3 py-2 transition duration-300'
                                         >
                                             <FaGoogle className='mr-2' />
                                             <span>Login</span>
@@ -117,7 +117,7 @@ const Navbar = () => {
                             <div className='hidden md:flex md:items-center md:space-x-4'>
                                 <Link
                                     href='/messages'
-                                    className='text-white bg-gray-700 hover:bg-gray-600 rounded-full p-2 transition duration-300'
+                                    className='text-white bg-slate-700 hover:bg-slate-600 rounded-full p-2 transition duration-300'
                                 >
                                     <div className='relative'>
                                         <svg
@@ -164,7 +164,7 @@ const Navbar = () => {
                                                         '/profile'
                                                     )
                                                 }
-                                                className='block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                                                className='block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-slate-100'
                                             >
                                                 Your Profile
                                             </button>
@@ -175,7 +175,7 @@ const Navbar = () => {
                                                         '/properties/saved'
                                                     )
                                                 }
-                                                className='block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                                                className='block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-slate-100'
                                             >
                                                 Saved Properties
                                             </button>
@@ -187,7 +187,7 @@ const Navbar = () => {
                                                         callbackUrl: '/',
                                                     });
                                                 }}
-                                                className='block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                                                className='block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-slate-100'
                                             >
                                                 Sign Out
                                             </button>
@@ -256,7 +256,7 @@ const Navbar = () => {
                             Properties
                         </NavLink>
                         {isLoading ? (
-                            <div className='w-full h-8 bg-gray-300 animate-pulse rounded'></div>
+                            <div className='w-full h-8 bg-slate-300 animate-pulse rounded'></div>
                         ) : session ? (
                             <>
                                 <NavLink
@@ -322,7 +322,7 @@ const NavLink = ({ href, children, active, mobile }) => (
         className={`
       ${
           active
-              ? 'bg-gray-700 text-white hover:bg-gray-600'
+              ? 'bg-slate-700 text-white hover:bg-slate-600'
               : 'text-white hover:bg-blue-600'
       }
       ${mobile ? 'block' : 'inline-flex items-center'}

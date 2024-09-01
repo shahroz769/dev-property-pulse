@@ -15,10 +15,10 @@ const ShareButtons = ({ property }) => {
 
     return (
         <>
-            <h3 className='text-xl font-bold text-center pt-2'>
+            <h3 className='text-xl font-bold text-center'>
                 Share This Property:
             </h3>
-            <div className='flex gap-3 justify-center pb-5'>
+            <div className='flex gap-3 justify-center pb-2'>
                 <FacebookShareButton
                     url={shareUrl}
                     quote={property.name}

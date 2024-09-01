@@ -21,7 +21,7 @@ const ProfilePage = async () => {
     const properties = propertiesDocs.map(convertToSerializeableObject);
 
     return (
-        <div className='min-h-screen bg-gray-100 py-12'>
+        <div className='min-h-screen bg-slate-100 py-12'>
             <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
                 <div className='bg-white rounded-lg shadow-md overflow-hidden mb-8'>
                     <div className='p-6'>

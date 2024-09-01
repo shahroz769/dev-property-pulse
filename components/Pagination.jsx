@@ -52,7 +52,7 @@ export default function Component({ page, pageSize, totalItems }) {
                         className={
                             page <= 1
                                 ? 'pointer-events-none opacity-50'
-                                : 'hover:bg-gray-100'
+                                : 'hover:bg-slate-100'
                         }
                     />
                 </PaginationItem>
@@ -67,8 +67,8 @@ export default function Component({ page, pageSize, totalItems }) {
                                 isActive={pageNumber === page}
                                 className={
                                     pageNumber === page
-                                        ? 'bg-gray-800 hover:bg-gray-700 text-white hover:text-white'
-                                        : 'hover:bg-gray-100'
+                                        ? 'bg-slate-800 hover:bg-slate-700 text-white hover:text-white'
+                                        : 'hover:bg-slate-100'
                                 }
                             >
                                 {pageNumber}
@@ -84,7 +84,7 @@ export default function Component({ page, pageSize, totalItems }) {
                         className={
                             page >= totalPages
                                 ? 'pointer-events-none opacity-50'
-                                : 'hover:bg-gray-100'
+                                : 'hover:bg-slate-100'
                         }
                     />
                 </PaginationItem>

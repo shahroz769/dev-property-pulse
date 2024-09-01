@@ -30,18 +30,18 @@ export default function PropertyContactForm({ property }) {
     if (isLoading) {
         return (
             <div className='bg-white rounded-lg shadow-lg overflow-hidden p-6 space-y-6'>
-                <Skeleton className='h-8 w-3/4 mb-8' />
+                <Skeleton className='bg-slate-200 h-8 w-3/4 mb-8' />
                 {[...Array(3)].map((_, index) => (
                     <div key={index} className='space-y-2'>
-                        <Skeleton className='h-4 w-1/4' />
-                        <Skeleton className='h-10 w-full' />
+                        <Skeleton className='bg-slate-200 h-4 w-1/4' />
+                        <Skeleton className='bg-slate-200 h-10 w-full' />
                     </div>
                 ))}
                 <div className='space-y-2'>
-                    <Skeleton className='h-4 w-1/4' />
-                    <Skeleton className='h-24 w-full' />
+                    <Skeleton className='bg-slate-200 h-4 w-1/4' />
+                    <Skeleton className='bg-slate-200 h-24 w-full' />
                 </div>
-                <Skeleton className='h-10 w-full' />
+                <Skeleton className='bg-slate-200 h-10 w-full' />
             </div>
         );
     }

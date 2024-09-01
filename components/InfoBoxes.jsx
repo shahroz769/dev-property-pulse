@@ -7,10 +7,10 @@ const InfoBoxes = () => {
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-lg mb-4'>
                     <InfoBox
                         heading='For Renters'
-                        backgroundColor='bg-gray-100'
+                        backgroundColor='bg-slate-100'
                         buttonText='Browse Properties'
                         buttonLink='/properties'
-                        buttonClassName='bg-gray-900 hover:bg-gray-700 text-white'
+                        buttonClassName='bg-slate-900 hover:bg-slate-700 text-white'
                     >
                         Find your dream rental property. Bookmark properties and
                         contact owners.

@@ -42,7 +42,7 @@ const MessageCard = ({ message }) => {
                         </span>
                     )}
                 </div>
-                <div className='bg-gray-100 p-4 rounded-lg mb-4'>
+                <div className='bg-slate-100 p-4 rounded-lg mb-4'>
                     <p className='text-gray-700 font-semibold'>
                         {message.body}
                     </p>
@@ -75,12 +75,12 @@ const MessageCard = ({ message }) => {
                     </div>
                 </div>
             </div>
-            <div className='bg-gray-50 px-6 py-4 flex justify-end'>
+            <div className='bg-slate-50 px-6 py-4 flex justify-end'>
                 <button
                     onClick={handleReadClick}
                     className={`mr-4 px-4 py-2 rounded-md font-medium transition-colors duration-300 ${
                         isRead
-                            ? 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                            ? 'bg-slate-200 text-gray-700 hover:bg-slate-300'
                             : 'bg-blue-500 text-white hover:bg-blue-600'
                     }`}
                 >

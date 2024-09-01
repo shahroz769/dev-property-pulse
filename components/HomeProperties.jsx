@@ -40,7 +40,7 @@ const HomeProperties = async () => {
                 <Button
                     asChild
                     size='lg'
-                    className='w-full bg-gray-900 hover:bg-gray-700 text-white'
+                    className='w-full bg-slate-900 hover:bg-slate-700 text-white'
                 >
                     <Link href='/properties'>View All Properties</Link>
                 </Button>

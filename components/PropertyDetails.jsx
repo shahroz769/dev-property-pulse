@@ -20,7 +20,7 @@ const PropertyDetails = ({ property }) => {
                     </div>
                 </div>
 
-                <div className='bg-gray-50 p-4 sm:p-6 rounded-xl'>
+                <div className='bg-slate-50 p-4 sm:p-6 rounded-xl'>
                     <h3 className='text-xl font-bold text-gray-800 mb-4'>
                         Rates & Options
                     </h3>
@@ -87,7 +87,7 @@ const PropertyDetails = ({ property }) => {
                         {property.amenities.map((amenity, index) => (
                             <li
                                 key={index}
-                                className='flex items-center text-gray-600 bg-gray-50 p-3 rounded-lg transition-all duration-300 hover:bg-gray-100'
+                                className='flex items-center text-gray-600 bg-slate-50 p-3 rounded-lg transition-all duration-300 hover:bg-slate-100'
                             >
                                 <Check className='w-5 h-5 mr-3 text-green-500 flex-shrink-0' />
                                 <span className='text-base sm:text-lg'>

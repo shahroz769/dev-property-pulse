@@ -73,7 +73,7 @@ export default function Component({ properties: initialProperties }) {
                         <AlertDialogCancel asChild>
                             <Button
                                 variant='outline'
-                                className='border-gray-300 text-gray-700 hover:bg-gray-100'
+                                className='border-gray-300 text-gray-700 hover:bg-slate-100'
                             >
                                 Cancel
                             </Button>
