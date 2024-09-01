@@ -46,7 +46,7 @@ function PropertyCardSkeleton() {
                 <Skeleton className='bg-slate-200 w-20 h-6 mb-2' />
                 <Skeleton className='bg-slate-200 w-3/4 h-6 mb-4' />
                 <div className='flex flex-col items-center gap-4 mb-4'>
-                    <div className='flex justify-center items-center gap-6 text-gray-500'>
+                    <div className='flex justify-center items-center gap-6 text-slate-500'>
                         <Skeleton className='bg-slate-200 w-16 h-6' />
                         <Skeleton className='bg-slate-200 w-16 h-6' />
                         <Skeleton className='bg-slate-200 w-16 h-6' />

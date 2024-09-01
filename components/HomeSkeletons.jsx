@@ -92,7 +92,7 @@ function FeaturedPropertyCardSkeleton() {
                     </div>
                 </div>
                 <div>
-                    <div className='border-t border-gray-200 mb-4'></div>
+                    <div className='border-t border-slate-200 mb-4'></div>
                     <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4'>
                         <Skeleton className='bg-slate-200 w-full sm:w-1/2 h-6' />
                         <Skeleton className='bg-slate-200 w-full sm:w-32 h-10 rounded-lg' />

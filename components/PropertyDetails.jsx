@@ -8,10 +8,10 @@ const PropertyDetails = ({ property }) => {
                     <span className='text-sm font-semibold text-blue-600 bg-blue-100 px-3 py-1 rounded-full'>
                         {property.type}
                     </span>
-                    <h1 className='text-3xl sm:text-4xl font-bold text-gray-900'>
+                    <h1 className='text-3xl sm:text-4xl font-bold text-slate-900'>
                         {property.name}
                     </h1>
-                    <div className='flex items-center text-gray-600'>
+                    <div className='flex items-center text-slate-600'>
                         <MapPin className='w-5 h-5 text-blue-500 mr-2 flex-shrink-0' />
                         <p className='text-base sm:text-lg'>
                             {property.location.street}, {property.location.city}{' '}
@@ -21,7 +21,7 @@ const PropertyDetails = ({ property }) => {
                 </div>
 
                 <div className='bg-slate-100 p-4 sm:p-6 rounded-xl'>
-                    <h3 className='text-xl font-bold text-gray-800 mb-4'>
+                    <h3 className='text-xl font-bold text-slate-800 mb-4'>
                         Rates & Options
                     </h3>
                     <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
@@ -30,7 +30,7 @@ const PropertyDetails = ({ property }) => {
                                 key={period}
                                 className='flex flex-col p-3 sm:p-4 bg-white rounded-lg transition-all duration-300'
                             >
-                                <span className='text-gray-600 mb-2'>
+                                <span className='text-slate-600 mb-2'>
                                     {period}
                                 </span>
                                 <span className='text-xl sm:text-2xl font-bold text-blue-600'>
@@ -47,18 +47,18 @@ const PropertyDetails = ({ property }) => {
                     </div>
                 </div>
                 <div className='space-y-4'>
-                    <h3 className='text-2xl font-bold text-gray-800'>
+                    <h3 className='text-2xl font-bold text-slate-800'>
                         Description
                     </h3>
-                    <p className='text-gray-600 leading-relaxed text-base sm:text-lg'>
+                    <p className='text-slate-600 leading-relaxed text-base sm:text-lg'>
                         {property.description}
                     </p>
                 </div>
                 <div className='space-y-6'>
-                    <h3 className='text-2xl font-bold text-gray-800'>
+                    <h3 className='text-2xl font-bold text-slate-800'>
                         Details
                     </h3>
-                    <div className='flex flex-col sm:flex-row items-start pl-4 justify-center sm:space-x-8 space-y-4 sm:space-y-0 text-gray-600'>
+                    <div className='flex flex-col sm:flex-row items-start pl-4 justify-center sm:space-x-8 space-y-4 sm:space-y-0 text-slate-600'>
                         <div className='flex items-center'>
                             <Bed className='w-6 h-6 mr-2 text-blue-500' />
                             <span className='text-lg'>
@@ -80,14 +80,14 @@ const PropertyDetails = ({ property }) => {
                     </div>
                 </div>
                 <div className='space-y-6'>
-                    <h3 className='text-2xl font-bold text-gray-800'>
+                    <h3 className='text-2xl font-bold text-slate-800'>
                         Amenities
                     </h3>
                     <ul className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
                         {property.amenities.map((amenity, index) => (
                             <li
                                 key={index}
-                                className='flex items-center text-gray-600 bg-slate-100 p-3 rounded-lg transition-all duration-300 hover:bg-slate-100'
+                                className='flex items-center text-slate-600 bg-slate-100 p-3 rounded-lg transition-all duration-300 hover:bg-slate-100'
                             >
                                 <Check className='w-5 h-5 mr-3 text-emerald-500 flex-shrink-0' />
                                 <span className='text-base sm:text-lg'>

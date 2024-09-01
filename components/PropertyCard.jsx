@@ -30,7 +30,7 @@ const PropertyCard = ({ property, index = 3, home }) => {
     );
 
     return (
-        <div className='rounded-xl shadow-md relative bg-white'>
+        <div className='rounded-xl bg-slate-50 relative shadow-sm'>
             <div className='relative w-full h-[300px]'>
                 <Link href={`/properties/${property._id}`}>
                     <PropertyCardBlurPlaceholder
@@ -54,7 +54,7 @@ const PropertyCard = ({ property, index = 3, home }) => {
                 </div>
 
                 <div className='flex flex-col items-center gap-4 mb-4'>
-                    <div className='flex justify-center items-center gap-6 text-gray-500'>
+                    <div className='flex justify-center items-center gap-6 text-slate-500'>
                         <p className='flex items-center'>
                             <Bed className='mr-1 h-5 w-5' /> {property.beds}
                             <span className='ml-1'>Beds</span>
@@ -83,7 +83,7 @@ const PropertyCard = ({ property, index = 3, home }) => {
                     </div>
                 </div>
 
-                <div className='border-t border-gray-200 my-4'></div>
+                <div className='border-t border-slate-200 my-4'></div>
 
                 <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4'>
                     <div className='flex items-center'>

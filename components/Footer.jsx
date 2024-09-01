@@ -23,7 +23,7 @@ export default function Footer() {
                                 PropertyPulse
                             </span>
                         </Link>
-                        <p className='mt-4 text-sm text-gray-400'>
+                        <p className='mt-4 text-sm text-slate-400'>
                             Find your perfect property with ease. PropertyPulse
                             offers a wide range of properties to suit your
                             needs.
@@ -75,35 +75,35 @@ export default function Footer() {
                         <div className='flex space-x-4'>
                             <Link
                                 href='/'
-                                className='text-gray-400 hover:text-white transition duration-300'
+                                className='text-slate-400 hover:text-white transition duration-300'
                                 aria-label='Facebook'
                             >
                                 <Facebook className='h-6 w-6' />
                             </Link>
                             <Link
                                 href='/'
-                                className='text-gray-400 hover:text-white transition duration-300'
+                                className='text-slate-400 hover:text-white transition duration-300'
                                 aria-label='Instagram'
                             >
                                 <Instagram className='h-6 w-6' />
                             </Link>
                             <Link
                                 href='/'
-                                className='text-gray-400 hover:text-white transition duration-300'
+                                className='text-slate-400 hover:text-white transition duration-300'
                                 aria-label='Twitter'
                             >
                                 <Twitter className='h-6 w-6' />
                             </Link>
                             <Link
                                 href='/'
-                                className='text-gray-400 hover:text-white transition duration-300'
+                                className='text-slate-400 hover:text-white transition duration-300'
                                 aria-label='LinkedIn'
                             >
                                 <Linkedin className='h-6 w-6' />
                             </Link>
                             <Link
                                 href='/'
-                                className='text-gray-400 hover:text-white transition duration-300'
+                                className='text-slate-400 hover:text-white transition duration-300'
                                 aria-label='WhatsApp'
                             >
                                 <svg
@@ -118,7 +118,7 @@ export default function Footer() {
                         </div>
                     </div>
                 </div>
-                <div className='border-t border-gray-700 pt-6 text-sm text-center text-gray-400'>
+                <div className='border-t border-slate-700 pt-6 text-sm text-center text-slate-400'>
                     &copy; {currentYear} PropertyPulse. All rights reserved.
                 </div>
             </div>

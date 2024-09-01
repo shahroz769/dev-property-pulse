@@ -59,12 +59,12 @@ export default function Component({ properties: initialProperties }) {
                 open={!!propertyToDelete}
                 onOpenChange={() => setPropertyToDelete(null)}
             >
-                <AlertDialogContent className='bg-white rounded-lg shadow-lg'>
+                <AlertDialogContent className='bg-white rounded-lg shadow-sm'>
                     <AlertDialogHeader>
-                        <AlertDialogTitle className='text-2xl font-bold text-gray-800'>
+                        <AlertDialogTitle className='text-2xl font-bold text-slate-800'>
                             Are you sure?
                         </AlertDialogTitle>
-                        <AlertDialogDescription className='text-gray-600'>
+                        <AlertDialogDescription className='text-slate-600'>
                             This action cannot be undone. Deleting this property
                             is permanent. Are you sure you want to proceed?
                         </AlertDialogDescription>
@@ -73,7 +73,7 @@ export default function Component({ properties: initialProperties }) {
                         <AlertDialogCancel asChild>
                             <Button
                                 variant='outline'
-                                className='border-gray-300 text-gray-700 hover:bg-slate-100'
+                                className='border-slate-300 text-slate-700 hover:bg-slate-100'
                             >
                                 Cancel
                             </Button>

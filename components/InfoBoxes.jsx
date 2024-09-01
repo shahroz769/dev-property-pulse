@@ -7,7 +7,7 @@ const InfoBoxes = () => {
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-lg mb-4'>
                     <InfoBox
                         heading='For Renters'
-                        backgroundColor='bg-slate-100'
+                        backgroundColor='bg-slate-50'
                         buttonText='Browse Properties'
                         buttonLink='/properties'
                         buttonClassName='bg-slate-900 hover:bg-slate-700 text-white'
@@ -17,7 +17,7 @@ const InfoBoxes = () => {
                     </InfoBox>
                     <InfoBox
                         heading='For Property Owners'
-                        backgroundColor='bg-blue-100'
+                        backgroundColor='bg-blue-50'
                         buttonText='Add Property'
                         buttonLink='/properties/add'
                         buttonClassName='bg-blue-500 hover:bg-blue-600 text-white'

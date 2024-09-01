@@ -23,7 +23,7 @@ const FeaturedPropertyCard = ({ property }) => {
     );
 
     return (
-        <div className='bg-white rounded-xl shadow-md relative flex flex-col lg:flex-row'>
+        <div className='bg-white rounded-xl shadow-sm relative flex flex-col lg:flex-row'>
             <div className='relative w-full lg:w-[260px] min-h-[260px] max-h-max'>
                 <Link href={`/properties/${property._id}`}>
                     <FeaturedPropertyCardBlurPlaceholder
@@ -47,7 +47,7 @@ const FeaturedPropertyCard = ({ property }) => {
                     </div>
 
                     <div className='flex flex-col items-center gap-4 mb-4'>
-                        <div className='flex justify-center items-center gap-4 sm:gap-6 text-gray-500'>
+                        <div className='flex justify-center items-center gap-4 sm:gap-6 text-slate-500'>
                             <p className='flex items-center'>
                                 <Bed className='mr-1 h-5 w-5' /> {property.beds}
                                 <span className='ml-1'>Beds</span>
@@ -87,7 +87,7 @@ const FeaturedPropertyCard = ({ property }) => {
                 </div>
 
                 <div>
-                    <div className='border-t border-gray-200 mb-4'></div>
+                    <div className='border-t border-slate-200 mb-4'></div>
 
                     <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4'>
                         <div className='flex items-center w-full sm:w-auto'>

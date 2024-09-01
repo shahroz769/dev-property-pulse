@@ -56,7 +56,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className='bg-blue-700 shadow-lg border-b border-blue-500'>
+        <nav className='bg-blue-700 shadow-sm border-b border-blue-500'>
             <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
                 <div className='flex justify-between h-16'>
                     <div className='flex items-center'>
@@ -157,29 +157,29 @@ const Navbar = () => {
                                         />
                                     </button>
                                     {isProfileMenuOpen && (
-                                        <div className='origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50'>
+                                        <div className='origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-sm py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50'>
                                             <button
                                                 onClick={() =>
                                                     handleMenuItemClick(
                                                         '/profile'
                                                     )
                                                 }
-                                                className='block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-slate-100'
+                                                className='block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-100'
                                             >
                                                 Your Profile
                                             </button>
-                                            <div className='border-t border-gray-200'></div>
+                                            <div className='border-t border-slate-200'></div>
                                             <button
                                                 onClick={() =>
                                                     handleMenuItemClick(
                                                         '/properties/saved'
                                                     )
                                                 }
-                                                className='block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-slate-100'
+                                                className='block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-100'
                                             >
                                                 Saved Properties
                                             </button>
-                                            <div className='border-t border-gray-200'></div>
+                                            <div className='border-t border-slate-200'></div>
                                             <button
                                                 onClick={() => {
                                                     setIsProfileMenuOpen(false);
@@ -187,7 +187,7 @@ const Navbar = () => {
                                                         callbackUrl: '/',
                                                     });
                                                 }}
-                                                className='block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-slate-100'
+                                                className='block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-100'
                                             >
                                                 Sign Out
                                             </button>

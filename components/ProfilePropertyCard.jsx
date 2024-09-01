@@ -12,7 +12,7 @@ export default function Component({ property, onDelete, index }) {
     );
 
     return (
-        <div className='rounded-xl relative bg-white'>
+        <div className='rounded-xl relative shadow-sm bg-white'>
             <div className='relative w-full h-[300px]'>
                 <Link href={`/properties/${property._id}`}>
                     <PropertyCardBlurPlaceholder
@@ -36,7 +36,7 @@ export default function Component({ property, onDelete, index }) {
                 </div>
 
                 <div className='flex flex-col items-center gap-4 mb-4'>
-                    <div className='flex justify-center items-center gap-6 text-gray-500'>
+                    <div className='flex justify-center items-center gap-6 text-slate-500'>
                         <p className='flex items-center'>
                             <Bed className='mr-1 h-5 w-5' /> {property.beds}
                             <span className='ml-1'>Beds</span>
@@ -53,7 +53,7 @@ export default function Component({ property, onDelete, index }) {
                     </div>
                 </div>
 
-                <div className='border-t border-gray-200 my-4'></div>
+                <div className='border-t border-slate-200 my-4'></div>
 
                 <div className='flex w-full gap-2 flex-col sm:flex-row'>
                     <Link

@@ -23,7 +23,7 @@ const ProfilePage = async () => {
     return (
         <div className='min-h-screen bg-slate-100 py-12'>
             <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
-                <div className='bg-white rounded-lg overflow-hidden mb-8'>
+                <div className='bg-white shadow-sm rounded-lg overflow-hidden mb-8'>
                     <div className='p-6'>
                         <div className='flex flex-col md:flex-row md:items-center md:space-x-8'>
                             <div className='flex-shrink-0 mb-6 md:mb-0'>
@@ -41,7 +41,7 @@ const ProfilePage = async () => {
                                 <h2 className='text-2xl font-semibold mb-2'>
                                     {sessionUser.user.name}
                                 </h2>
-                                <p className='text-gray-600'>
+                                <p className='text-slate-600'>
                                     {sessionUser.user.email}
                                 </p>
                             </div>
@@ -51,11 +51,11 @@ const ProfilePage = async () => {
 
                 <div>
                     <h2 className='text-2xl font-bold mb-4'>Your Listings</h2>
-                    <p className='text-gray-600 mb-6'>
+                    <p className='text-slate-600 mb-6'>
                         Total Listings: {properties.length}
                     </p>
                     {properties.length === 0 ? (
-                        <p className='bg-white rounded-lg shadow-md p-6 text-center text-gray-500'>
+                        <p className='bg-white rounded-lg shadow-sm p-6 text-center text-slate-500'>
                             You have no property listings
                         </p>
                     ) : (

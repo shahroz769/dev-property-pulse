@@ -69,7 +69,7 @@ export default function PropertyContactForm({ property }) {
     return (
         <div className='bg-white rounded-lg overflow-hidden'>
             <div className='p-6 space-y-6'>
-                <h3 className='text-2xl font-bold text-gray-800 border-b pb-2'>
+                <h3 className='text-2xl font-bold text-slate-800 border-b pb-2'>
                     Contact Manager
                 </h3>
                 <form

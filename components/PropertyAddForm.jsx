@@ -60,7 +60,7 @@ export default function PropertyAddForm() {
     return (
         <form ref={formRef} onSubmit={handleSubmit} className='space-y-6'>
             <CardHeader className='p-0 sm:p-6'>
-                <CardTitle className='text-2xl sm:text-3xl font-bold text-center text-gray-800'>
+                <CardTitle className='text-2xl sm:text-3xl font-bold text-center text-slate-800'>
                     Add Property
                 </CardTitle>
             </CardHeader>
@@ -69,7 +69,7 @@ export default function PropertyAddForm() {
                 <div className='space-y-2'>
                     <Label
                         htmlFor='type'
-                        className='text-sm font-medium text-gray-700'
+                        className='text-sm font-medium text-slate-700'
                     >
                         Property Type
                     </Label>
@@ -103,7 +103,7 @@ export default function PropertyAddForm() {
                 <div className='space-y-2'>
                     <Label
                         htmlFor='name'
-                        className='text-sm font-medium text-gray-700'
+                        className='text-sm font-medium text-slate-700'
                     >
                         Listing Name
                     </Label>
@@ -119,7 +119,7 @@ export default function PropertyAddForm() {
                 <div className='space-y-2'>
                     <Label
                         htmlFor='description'
-                        className='text-sm font-medium text-gray-700'
+                        className='text-sm font-medium text-slate-700'
                     >
                         Description
                     </Label>
@@ -133,7 +133,7 @@ export default function PropertyAddForm() {
 
                 <Card>
                     <CardHeader>
-                        <CardTitle className='text-xl font-semibold text-gray-800'>
+                        <CardTitle className='text-xl font-semibold text-slate-800'>
                             Location
                         </CardTitle>
                     </CardHeader>
@@ -172,7 +172,7 @@ export default function PropertyAddForm() {
                         <div key={item} className='space-y-2'>
                             <Label
                                 htmlFor={item.toLowerCase().replace(/\s/g, '_')}
-                                className='text-sm font-medium text-gray-700'
+                                className='text-sm font-medium text-slate-700'
                             >
                                 {item}
                             </Label>
@@ -189,7 +189,7 @@ export default function PropertyAddForm() {
 
                 <Card>
                     <CardHeader>
-                        <CardTitle className='text-xl font-semibold text-gray-800'>
+                        <CardTitle className='text-xl font-semibold text-slate-800'>
                             Amenities
                         </CardTitle>
                     </CardHeader>
@@ -227,7 +227,7 @@ export default function PropertyAddForm() {
                                         htmlFor={`amenity_${amenity
                                             .toLowerCase()
                                             .replace(/\s/g, '_')}`}
-                                        className='text-sm text-gray-600'
+                                        className='text-sm text-slate-600'
                                     >
                                         {amenity}
                                     </Label>
@@ -239,7 +239,7 @@ export default function PropertyAddForm() {
 
                 <Card>
                     <CardHeader>
-                        <CardTitle className='text-xl font-semibold text-gray-800'>
+                        <CardTitle className='text-xl font-semibold text-slate-800'>
                             Rates (Leave blank if not applicable)
                         </CardTitle>
                     </CardHeader>
@@ -249,7 +249,7 @@ export default function PropertyAddForm() {
                                 <div key={rate} className='space-y-2'>
                                     <Label
                                         htmlFor={`${rate.toLowerCase()}_rate`}
-                                        className='text-sm font-medium text-gray-700'
+                                        className='text-sm font-medium text-slate-700'
                                     >
                                         {rate}
                                     </Label>
@@ -267,7 +267,7 @@ export default function PropertyAddForm() {
 
                 <Card>
                     <CardHeader>
-                        <CardTitle className='text-xl font-semibold text-gray-800'>
+                        <CardTitle className='text-xl font-semibold text-slate-800'>
                             Seller Information
                         </CardTitle>
                     </CardHeader>
@@ -275,7 +275,7 @@ export default function PropertyAddForm() {
                         <div className='space-y-2'>
                             <Label
                                 htmlFor='seller_name'
-                                className='text-sm font-medium text-gray-700'
+                                className='text-sm font-medium text-slate-700'
                             >
                                 Seller Name
                             </Label>
@@ -289,7 +289,7 @@ export default function PropertyAddForm() {
                         <div className='space-y-2'>
                             <Label
                                 htmlFor='seller_email'
-                                className='text-sm font-medium text-gray-700'
+                                className='text-sm font-medium text-slate-700'
                             >
                                 Seller Email
                             </Label>
@@ -305,7 +305,7 @@ export default function PropertyAddForm() {
                         <div className='space-y-2'>
                             <Label
                                 htmlFor='seller_phone'
-                                className='text-sm font-medium text-gray-700'
+                                className='text-sm font-medium text-slate-700'
                             >
                                 Seller Phone
                             </Label>
@@ -323,7 +323,7 @@ export default function PropertyAddForm() {
                 <div className='space-y-2'>
                     <Label
                         htmlFor='images'
-                        className='text-sm font-medium text-gray-700 block sm:inline-block sm:mr-4'
+                        className='text-sm font-medium text-slate-700 block sm:inline-block sm:mr-4'
                     >
                         Images (Select up to 4 images)
                     </Label>
@@ -340,7 +340,7 @@ export default function PropertyAddForm() {
                     />
                     <Label
                         htmlFor='images'
-                        className={`cursor-pointer inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+                        className={`cursor-pointer inline-flex items-center px-4 py-2 border border-slate-300 shadow-sm text-sm font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
                             isSaving ? 'opacity-50 cursor-not-allowed' : ''
                         }`}
                     >

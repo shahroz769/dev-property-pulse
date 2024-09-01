@@ -30,10 +30,10 @@ const MessageCard = ({ message }) => {
     }
 
     return (
-        <div className='bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200'>
+        <div className='bg-white rounded-lg shadow-sm overflow-hidden border border-slate-200'>
             <div className='p-6'>
                 <div className='flex justify-between items-center mb-4'>
-                    <h2 className='text-2xl font-bold text-gray-800 text-center flex-grow'>
+                    <h2 className='text-2xl font-bold text-slate-800 text-center flex-grow'>
                         {message.property.name}
                     </h2>
                     {!isRead && (
@@ -43,33 +43,33 @@ const MessageCard = ({ message }) => {
                     )}
                 </div>
                 <div className='bg-slate-100 p-4 rounded-lg mb-4'>
-                    <p className='text-gray-700 font-semibold'>
+                    <p className='text-slate-700 font-semibold'>
                         {message.body}
                     </p>
                 </div>
                 <div className='space-y-2'>
                     <div className='flex items-center'>
-                        <span className='text-gray-600 w-24'>From:</span>
+                        <span className='text-slate-600 w-24'>From:</span>
                         <a
                             href={`mailto:${message.email}`}
-                            className='text-gray-600 font-semibold no-underline hover:underline'
+                            className='text-slate-600 font-semibold no-underline hover:underline'
                         >
                             {message.email}
                         </a>
                     </div>
                     <div className='flex items-center'>
-                        <span className='text-gray-600 w-24'>Phone:</span>
+                        <span className='text-slate-600 w-24'>Phone:</span>
                         <a
                             href={`tel:${message.phone}`}
-                            className='text-gray-600 font-semibold no-underline hover:underline'
+                            className='text-slate-600 font-semibold no-underline hover:underline'
                         >
                             {message.phone}
                         </a>
                     </div>
 
                     <div className='flex items-center'>
-                        <span className='text-gray-600 w-24'>Received:</span>
-                        <span className='text-gray-600 font-semibold'>
+                        <span className='text-slate-600 w-24'>Received:</span>
+                        <span className='text-slate-600 font-semibold'>
                             {new Date(message.createdAt).toLocaleString()}
                         </span>
                     </div>
@@ -80,7 +80,7 @@ const MessageCard = ({ message }) => {
                     onClick={handleReadClick}
                     className={`mr-4 px-4 py-2 rounded-md font-medium transition-colors duration-300 ${
                         isRead
-                            ? 'bg-slate-200 text-gray-700 hover:bg-slate-300'
+                            ? 'bg-slate-200 text-slate-700 hover:bg-slate-300'
                             : 'bg-blue-500 text-white hover:bg-blue-600'
                     }`}
                 >
