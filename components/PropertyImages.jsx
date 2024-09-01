@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import Image from 'next/image';
 import { createPngDataUri } from 'unlazy/thumbhash';
 import { Gallery, Item } from 'react-photoswipe-gallery';
@@ -29,6 +30,10 @@ const PropertyImages = ({ images }) => {
         return image;
     });
 
+    const handleImageError = (e) => {
+        e.target.src = '/images/placeholder2.svg';
+    };
+
     return (
         <Gallery>
             <section className='bg-blue-50 pb-10'>
@@ -55,6 +60,7 @@ const PropertyImages = ({ images }) => {
                                     blurDataURL={
                                         cloudinaryImages[0].blurDataURL
                                     }
+                                    onError={handleImageError}
                                 />
                             )}
                         </Item>
@@ -89,6 +95,7 @@ const PropertyImages = ({ images }) => {
                                                 unoptimized
                                                 placeholder='blur'
                                                 blurDataURL={image.blurDataURL}
+                                                onError={handleImageError}
                                             />
                                         )}
                                     </Item>

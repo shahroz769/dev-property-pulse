@@ -2,9 +2,7 @@ import Link from 'next/link';
 import { Bed, Bath, Ruler, MapPin, Edit, Trash2 } from 'lucide-react';
 import PropertyCardBlurPlaceholder from '@/components/PropertyCardBlurPlaceholder';
 
-export default function Component({ property, onDelete, index }) {
-    const shouldPrioritize = index < 3;
-
+export default function Component({ property, onDelete }) {
     const { url: cloudinaryImage, thumbhash } = property.images[0];
     const transformedImage = cloudinaryImage.replace(
         'upload/',
@@ -19,7 +17,6 @@ export default function Component({ property, onDelete, index }) {
                         src={transformedImage}
                         alt={property.name}
                         thumbhash={thumbhash}
-                        priority={shouldPrioritize}
                     />
                 </Link>
                 <div className='absolute top-2 right-2 bg-blue-500 text-white px-2 py-1 rounded-lg font-bold text-sm flex items-center'>

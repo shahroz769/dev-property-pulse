@@ -3,7 +3,7 @@ import PropertyCardBlurPlaceholder from '@/components/PropertyCardBlurPlaceholde
 import Link from 'next/link';
 import { Bed, Bath, Ruler, DollarSign, MapPin } from 'lucide-react';
 
-const PropertyCard = ({ property, index = 3, home }) => {
+const PropertyCard = ({ property }) => {
     const getRateDisplay = () => {
         const { rates } = property;
         if (rates.monthly) {
@@ -14,13 +14,6 @@ const PropertyCard = ({ property, index = 3, home }) => {
             return `$${rates.nightly.toLocaleString()}/night`;
         }
     };
-
-    let shouldPrioritize;
-    if (home) {
-        shouldPrioritize = false;
-    } else {
-        shouldPrioritize = index < 3;
-    }
 
     const { url: cloudinaryImage, thumbhash } = property.images[0];
 
@@ -37,7 +30,6 @@ const PropertyCard = ({ property, index = 3, home }) => {
                         src={transformedImage}
                         alt={property.name}
                         thumbhash={thumbhash}
-                        priority={shouldPrioritize}
                     />
                 </Link>
 

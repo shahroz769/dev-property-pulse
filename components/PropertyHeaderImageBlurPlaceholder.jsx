@@ -1,11 +1,18 @@
 'use client';
+import { useState } from 'react';
 import Image from 'next/image';
 import { createPngDataUri } from 'unlazy/thumbhash';
 
 const PropertyHeaderImageBlurPlaceholder = ({ src, thumbhash }) => {
+    const [imageSrc, setImageSrc] = useState(src);
+
+    const handleError = () => {
+        setImageSrc('/images/placeholder2.svg');
+    };
+
     return (
         <Image
-            src={src}
+            src={imageSrc}
             alt='Property Banner'
             width={0}
             height={0}
@@ -13,6 +20,7 @@ const PropertyHeaderImageBlurPlaceholder = ({ src, thumbhash }) => {
             unoptimized
             placeholder='blur'
             blurDataURL={createPngDataUri(thumbhash)}
+            onError={handleError}
         />
     );
 };
