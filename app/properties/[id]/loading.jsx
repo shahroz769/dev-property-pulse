@@ -7,7 +7,7 @@ export default function Loading() {
         <>
             <HeaderImageSkeleton />
             <BackToPropertiesLink />
-            <section className='bg-blue-50'>
+            <section className='bg-slate-100'>
                 <div className='container m-auto py-10 px-6'>
                     <div className='grid grid-cols-1 md:grid-cols-70/30 w-full gap-6'>
                         <PropertyDetailsSkeleton />
@@ -117,7 +117,7 @@ const SidebarSkeleton = () => (
 
         <Skeleton className='bg-slate-200 h-10 w-full' />
 
-        <div className='bg-white rounded-lg shadow-lg overflow-hidden p-6 space-y-6'>
+        <div className='bg-white rounded-lg overflow-hidden p-6 space-y-6'>
             <Skeleton className='bg-slate-200 h-8 w-3/4 mb-8' />
             {[...Array(3)].map((_, index) => (
                 <div key={index} className='space-y-2'>

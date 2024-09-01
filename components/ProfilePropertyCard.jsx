@@ -1,13 +1,5 @@
 import Link from 'next/link';
-import {
-    Bed,
-    Bath,
-    Ruler,
-    DollarSign,
-    MapPin,
-    Edit,
-    Trash2,
-} from 'lucide-react';
+import { Bed, Bath, Ruler, MapPin, Edit, Trash2 } from 'lucide-react';
 import PropertyCardBlurPlaceholder from '@/components/PropertyCardBlurPlaceholder';
 
 export default function Component({ property, onDelete, index }) {
@@ -20,7 +12,7 @@ export default function Component({ property, onDelete, index }) {
     );
 
     return (
-        <div className='rounded-xl shadow-md relative bg-white'>
+        <div className='rounded-xl relative bg-white'>
             <div className='relative w-full h-[300px]'>
                 <Link href={`/properties/${property._id}`}>
                     <PropertyCardBlurPlaceholder

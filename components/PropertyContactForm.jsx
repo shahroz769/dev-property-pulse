@@ -29,7 +29,7 @@ export default function PropertyContactForm({ property }) {
 
     if (isLoading) {
         return (
-            <div className='bg-white rounded-lg shadow-lg overflow-hidden p-6 space-y-6'>
+            <div className='bg-white rounded-lg overflow-hidden p-6 space-y-6'>
                 <Skeleton className='bg-slate-200 h-8 w-3/4 mb-8' />
                 {[...Array(3)].map((_, index) => (
                     <div key={index} className='space-y-2'>
@@ -67,7 +67,7 @@ export default function PropertyContactForm({ property }) {
     }
 
     return (
-        <div className='bg-white rounded-lg shadow-lg overflow-hidden'>
+        <div className='bg-white rounded-lg overflow-hidden'>
             <div className='p-6 space-y-6'>
                 <h3 className='text-2xl font-bold text-gray-800 border-b pb-2'>
                     Contact Manager

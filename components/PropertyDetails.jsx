@@ -2,7 +2,7 @@ import { Bed, Bath, Ruler, X, Check, MapPin } from 'lucide-react';
 
 const PropertyDetails = ({ property }) => {
     return (
-        <div className='bg-white rounded-xl shadow-lg overflow-hidden'>
+        <div className='bg-white rounded-xl overflow-hidden'>
             <div className='p-4 sm:p-8 space-y-6 sm:space-y-8'>
                 <div className='space-y-4'>
                     <span className='text-sm font-semibold text-blue-600 bg-blue-100 px-3 py-1 rounded-full'>
@@ -20,7 +20,7 @@ const PropertyDetails = ({ property }) => {
                     </div>
                 </div>
 
-                <div className='bg-slate-50 p-4 sm:p-6 rounded-xl'>
+                <div className='bg-slate-100 p-4 sm:p-6 rounded-xl'>
                     <h3 className='text-xl font-bold text-gray-800 mb-4'>
                         Rates & Options
                     </h3>
@@ -28,7 +28,7 @@ const PropertyDetails = ({ property }) => {
                         {['Nightly', 'Weekly', 'Monthly'].map((period) => (
                             <div
                                 key={period}
-                                className='flex flex-col p-3 sm:p-4 bg-white rounded-lg shadow-md transition-all duration-300 hover:shadow-lg'
+                                className='flex flex-col p-3 sm:p-4 bg-white rounded-lg transition-all duration-300'
                             >
                                 <span className='text-gray-600 mb-2'>
                                     {period}
@@ -87,9 +87,9 @@ const PropertyDetails = ({ property }) => {
                         {property.amenities.map((amenity, index) => (
                             <li
                                 key={index}
-                                className='flex items-center text-gray-600 bg-slate-50 p-3 rounded-lg transition-all duration-300 hover:bg-slate-100'
+                                className='flex items-center text-gray-600 bg-slate-100 p-3 rounded-lg transition-all duration-300 hover:bg-slate-100'
                             >
-                                <Check className='w-5 h-5 mr-3 text-green-500 flex-shrink-0' />
+                                <Check className='w-5 h-5 mr-3 text-emerald-500 flex-shrink-0' />
                                 <span className='text-base sm:text-lg'>
                                     {amenity}
                                 </span>
