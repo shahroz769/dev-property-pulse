@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
 import { useSession } from 'next-auth/react';
-import { toast } from 'react-toastify';
+import { toast } from 'sonner';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';

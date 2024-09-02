@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from 'sonner';
 import deleteProperty from '@/app/actions/deleteProperty';
 import ProfilePropertyCard from '@/components/ProfilePropertyCard';
 import {
@@ -13,7 +13,6 @@ import {
     AlertDialogFooter,
     AlertDialogHeader,
     AlertDialogTitle,
-    AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 
@@ -30,16 +29,21 @@ export default function Component({ properties: initialProperties }) {
 
         const deletePropertyById = deleteProperty.bind(null, propertyToDelete);
 
-        await deletePropertyById();
-
-        toast.success('Property Deleted');
-
-        const updatedProperties = properties.filter(
-            (property) => property._id !== propertyToDelete
-        );
-
-        setProperties(updatedProperties);
-        setPropertyToDelete(null);
+        toast.promise(deletePropertyById(), {
+            loading: 'Deleting property...',
+            success: () => {
+                const updatedProperties = properties.filter(
+                    (property) => property._id !== propertyToDelete
+                );
+                setProperties(updatedProperties);
+                setPropertyToDelete(null);
+                return 'Property deleted successfully';
+            },
+            error: (err) => {
+                console.error('Error deleting property:', err);
+                return 'Failed to delete property';
+            },
+        });
     };
 
     return (
