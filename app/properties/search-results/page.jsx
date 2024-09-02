@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import PropertyCard from '@/components/PropertyCard';
 import PropertySearchForm from '@/components/PropertySearchForm';
 import connectDB from '@/config/database';
@@ -31,7 +30,7 @@ const SearchResultsPage = async ({
     }
 
     const propertiesQueryResults = await Property.find(query).lean();
-    const properties = convertToSerializeableObject(propertiesQueryResults);
+    const properties = propertiesQueryResults.map(convertToSerializeableObject);
 
     return (
         <>

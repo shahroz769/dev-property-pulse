@@ -45,48 +45,64 @@ export default function Component({ page, pageSize, totalItems }) {
         <Pagination className='mt-10'>
             <PaginationContent>
                 <PaginationItem>
-                    <PaginationPrevious
-                        href={`/properties?page=${page - 1}`}
-                        as={Link}
-                        aria-disabled={page <= 1}
-                        className={
-                            page <= 1
-                                ? 'pointer-events-none opacity-50'
-                                : 'hover:bg-slate-100'
-                        }
-                    />
+                    <Link
+                        href={page > 1 ? `/properties?page=${page - 1}` : '#'}
+                        passHref
+                        legacyBehavior
+                    >
+                        <PaginationPrevious
+                            aria-disabled={page <= 1}
+                            className={
+                                page <= 1
+                                    ? 'pointer-events-none opacity-50'
+                                    : 'hover:bg-slate-100'
+                            }
+                        />
+                    </Link>
                 </PaginationItem>
                 {getPageNumbers().map((pageNumber, index) => (
                     <PaginationItem key={index}>
                         {pageNumber === 'ellipsis' ? (
                             <PaginationEllipsis />
                         ) : (
-                            <PaginationLink
+                            <Link
                                 href={`/properties?page=${pageNumber}`}
-                                as={Link}
-                                isActive={pageNumber === page}
-                                className={
-                                    pageNumber === page
-                                        ? 'bg-slate-800 hover:bg-slate-700 text-white hover:text-white'
-                                        : 'hover:bg-slate-100'
-                                }
+                                passHref
+                                legacyBehavior
                             >
-                                {pageNumber}
-                            </PaginationLink>
+                                <PaginationLink
+                                    isActive={pageNumber === page}
+                                    className={
+                                        pageNumber === page
+                                            ? 'bg-slate-800 hover:bg-slate-700 text-white hover:text-white'
+                                            : 'hover:bg-slate-100'
+                                    }
+                                >
+                                    {pageNumber}
+                                </PaginationLink>
+                            </Link>
                         )}
                     </PaginationItem>
                 ))}
                 <PaginationItem>
-                    <PaginationNext
-                        href={`/properties?page=${page + 1}`}
-                        as={Link}
-                        aria-disabled={page >= totalPages}
-                        className={
-                            page >= totalPages
-                                ? 'pointer-events-none opacity-50'
-                                : 'hover:bg-slate-100'
+                    <Link
+                        href={
+                            page < totalPages
+                                ? `/properties?page=${page + 1}`
+                                : '#'
                         }
-                    />
+                        passHref
+                        legacyBehavior
+                    >
+                        <PaginationNext
+                            aria-disabled={page >= totalPages}
+                            className={
+                                page >= totalPages
+                                    ? 'pointer-events-none opacity-50'
+                                    : 'hover:bg-slate-100'
+                            }
+                        />
+                    </Link>
                 </PaginationItem>
             </PaginationContent>
         </Pagination>
