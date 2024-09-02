@@ -4,20 +4,107 @@ import PropertyCardBlurPlaceholder from '@/components/PropertyCardBlurPlaceholde
 
 export default function Component({ property, onDelete }) {
     const { url: cloudinaryImage, thumbhash } = property.images[0];
-    const transformedImage = cloudinaryImage.replace(
+
+    const cloudinaryImage3xl = cloudinaryImage.replace(
         'upload/',
-        'upload/f_avif,w_496,h_300,c_fill/'
+        'upload/f_avif,w_300,h_300,c_fill,g_auto/'
+    );
+    const cloudinaryImage2xl = cloudinaryImage.replace(
+        'upload/',
+        'upload/f_avif,w_300,h_300,c_fill,g_auto/'
+    );
+    const cloudinaryImageXl = cloudinaryImage.replace(
+        'upload/',
+        'upload/f_avif,w_300,h_300,c_fill,g_auto/'
+    );
+    const cloudinaryImageLg = cloudinaryImage.replace(
+        'upload/',
+        'upload/f_avif,w_410,h_300,c_fill,g_auto/'
+    );
+    const cloudinaryImageMd = cloudinaryImage.replace(
+        'upload/',
+        'upload/f_avif,w_600,h_300,c_fill,g_auto/'
+    );
+    const cloudinaryImageSm = cloudinaryImage.replace(
+        'upload/',
+        'upload/f_avif,w_540,h_300,c_fill,g_auto/'
+    );
+    const cloudinaryImageXs = cloudinaryImage.replace(
+        'upload/',
+        'upload/f_avif,w_420,h_300,c_fill,g_auto/'
+    );
+    const cloudinaryImage2xs = cloudinaryImage.replace(
+        'upload/',
+        'upload/f_avif,w_330,h_300,c_fill,g_auto/'
     );
 
     return (
         <div className='rounded-xl relative shadow-sm bg-white'>
             <div className='relative w-full h-[300px]'>
                 <Link href={`/properties/${property._id}`}>
-                    <PropertyCardBlurPlaceholder
-                        src={transformedImage}
-                        alt={property.name}
-                        thumbhash={thumbhash}
-                    />
+                    <div className='block 2xs:hidden'>
+                        <PropertyCardBlurPlaceholder
+                            src={cloudinaryImage2xs}
+                            alt={property.name}
+                            thumbhash={thumbhash}
+                        />
+                    </div>
+                    <div className='hidden 2xs:block xs:hidden'>
+                        <PropertyCardBlurPlaceholder
+                            src={cloudinaryImageXs}
+                            alt={property.name}
+                            thumbhash={thumbhash}
+                        />
+                    </div>
+                    <div className='hidden xs:block sm:hidden'>
+                        <PropertyCardBlurPlaceholder
+                            src={cloudinaryImageSm}
+                            alt={property.name}
+                            thumbhash={thumbhash}
+                        />
+                    </div>
+                    <div className='hidden sm:block md:hidden'>
+                        <PropertyCardBlurPlaceholder
+                            src={cloudinaryImageMd}
+                            alt={property.name}
+                            thumbhash={thumbhash}
+                        />
+                    </div>
+                    <div className='hidden md:block lg:hidden'>
+                        <PropertyCardBlurPlaceholder
+                            src={cloudinaryImageLg}
+                            alt={property.name}
+                            thumbhash={thumbhash}
+                        />
+                    </div>
+                    <div className='hidden lg:block xl:hidden'>
+                        <PropertyCardBlurPlaceholder
+                            src={cloudinaryImageXl}
+                            alt={property.name}
+                            thumbhash={thumbhash}
+                        />
+                    </div>
+                    <div className='hidden xl:block 2xl:hidden'>
+                        <PropertyCardBlurPlaceholder
+                            src={cloudinaryImage2xl}
+                            alt={property.name}
+                            thumbhash={thumbhash}
+                        />
+                    </div>
+                    <div className='hidden 2xl:block 3xl:hidden'>
+                        <PropertyCardBlurPlaceholder
+                            src={cloudinaryImage3xl}
+                            alt={property.name}
+                            thumbhash={thumbhash}
+                        />
+                    </div>
+                    <div className='hidden 3xl:block'>
+                        <PropertyCardBlurPlaceholder
+                            src={cloudinaryImage3xl}
+                            alt={property.name}
+                            thumbhash={thumbhash}
+                        />
+                    </div>
                 </Link>
                 <div className='absolute top-2 right-2 bg-blue-500 text-white px-2 py-1 rounded-lg font-bold text-sm flex items-center'>
                     <MapPin className='mr-1 h-4 w-4' />

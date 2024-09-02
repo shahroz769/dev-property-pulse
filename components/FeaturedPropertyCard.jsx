@@ -17,22 +17,102 @@ const FeaturedPropertyCard = ({ property }) => {
 
     const { url: cloudinaryImage, thumbhash } = property.images[0];
 
-    const transformedImage = cloudinaryImage.replace(
+    const transformedImage3xl = cloudinaryImage.replace(
         'upload/',
-        'upload/f_avif,w_496,h_300,c_fill/'
+        'upload/f_avif,w_260,h_260,c_fill/'
+    );
+    const transformedImage2xl = cloudinaryImage.replace(
+        'upload/',
+        'upload/f_avif,w_260,h_260,c_fill/'
+    );
+    const transformedImageXl = cloudinaryImage.replace(
+        'upload/',
+        'upload/f_avif,w_220,h_280,c_fill/'
+    );
+    const transformedImageLg = cloudinaryImage.replace(
+        'upload/',
+        'upload/f_avif,w_420,h_260,c_fill/'
+    );
+    const transformedImageMd = cloudinaryImage.replace(
+        'upload/',
+        'upload/f_avif,w_650,h_260,c_fill/'
+    );
+    const transformedImageSm = cloudinaryImage.replace(
+        'upload/',
+        'upload/f_avif,w_530,h_260,c_fill/'
+    );
+    const transformedImageXs = cloudinaryImage.replace(
+        'upload/',
+        'upload/f_avif,w_400,h_260,c_fill/'
+    );
+    const transformedImage2xs = cloudinaryImage.replace(
+        'upload/',
+        'upload/f_avif,w_320,h_260,c_fill/'
     );
 
     return (
         <div className='bg-white rounded-xl shadow-sm relative flex flex-col lg:flex-row'>
             <div className='relative w-full lg:w-[260px] min-h-[260px] max-h-max'>
                 <Link href={`/properties/${property._id}`}>
-                    <FeaturedPropertyCardBlurPlaceholder
-                        src={transformedImage}
-                        alt={property.name}
-                        thumbhash={thumbhash}
-                    />
+                    <div>
+                        <div className='hidden 3xl:block'>
+                            <FeaturedPropertyCardBlurPlaceholder
+                                src={transformedImage3xl}
+                                alt={property.name}
+                                thumbhash={thumbhash}
+                            />
+                        </div>
+                        <div className='hidden xl:block 2xl:hidden'>
+                            <FeaturedPropertyCardBlurPlaceholder
+                                src={transformedImage2xl}
+                                alt={property.name}
+                                thumbhash={thumbhash}
+                            />
+                        </div>
+                        <div className='hidden lg:block xl:hidden'>
+                            <FeaturedPropertyCardBlurPlaceholder
+                                src={transformedImageXl}
+                                alt={property.name}
+                                thumbhash={thumbhash}
+                            />
+                        </div>
+                        <div className='hidden md:block lg:hidden'>
+                            <FeaturedPropertyCardBlurPlaceholder
+                                src={transformedImageLg}
+                                alt={property.name}
+                                thumbhash={thumbhash}
+                            />
+                        </div>
+                        <div className='hidden sm:block md:hidden'>
+                            <FeaturedPropertyCardBlurPlaceholder
+                                src={transformedImageMd}
+                                alt={property.name}
+                                thumbhash={thumbhash}
+                            />
+                        </div>
+                        <div className='hidden xs:block sm:hidden'>
+                            <FeaturedPropertyCardBlurPlaceholder
+                                src={transformedImageSm}
+                                alt={property.name}
+                                thumbhash={thumbhash}
+                            />
+                        </div>
+                        <div className='hidden 2xs:block xs:hidden'>
+                            <FeaturedPropertyCardBlurPlaceholder
+                                src={transformedImageXs}
+                                alt={property.name}
+                                thumbhash={thumbhash}
+                            />
+                        </div>
+                        <div className='block 2xs:hidden'>
+                            <FeaturedPropertyCardBlurPlaceholder
+                                src={transformedImage2xs}
+                                alt={property.name}
+                                thumbhash={thumbhash}
+                            />
+                        </div>
+                    </div>
                 </Link>
-
                 <div className='absolute top-2 right-2 lg:left-2 lg:right-auto bg-blue-500 text-white px-2 py-1 rounded-lg font-bold text-sm'>
                     {getRateDisplay()}
                 </div>
