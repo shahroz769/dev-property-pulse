@@ -1,480 +1,338 @@
+'use client';
+
+import { useState, useRef } from 'react';
+import { useRouter } from 'next/navigation';
+import { Loader2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import updateProperty from '@/app/actions/updateProperty';
 
-const PropertyEditForm = ({ property }) => {
-    const updatePropertyById = updateProperty.bind(null, property._id);
+export default function PropertyEditForm({ property }) {
+    const [isSaving, setIsSaving] = useState(false);
+    const router = useRouter();
+    const formRef = useRef(null);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSaving(true);
+
+        const formData = new FormData(formRef.current);
+
+        try {
+            await updateProperty(property._id, formData);
+            // The server action will handle the redirect, so we don't need to do it here
+            // Scroll to top after form submission
+            window.scrollTo(0, 0);
+        } catch (error) {
+            console.error('Error updating property:', error);
+            setIsSaving(false);
+            // Optionally, you can show an error message to the user here
+        }
+    };
 
     return (
-        <form action={updatePropertyById}>
-            <h2 className='text-3xl text-center font-semibold mb-6'>
-                Edit Property
-            </h2>
+        <form ref={formRef} onSubmit={handleSubmit} className='space-y-6'>
+            <CardHeader className='p-0 sm:p-6'>
+                <CardTitle className='text-2xl sm:text-3xl font-bold text-center text-slate-800'>
+                    Edit Property
+                </CardTitle>
+            </CardHeader>
 
-            <div className='mb-4'>
-                <label
-                    htmlFor='type'
-                    className='block text-slate-700 font-bold mb-2'
-                >
-                    Property Type
-                </label>
-                <select
-                    id='type'
-                    name='type'
-                    className='border rounded w-full py-2 px-3'
-                    required
-                    defaultValue={property.type}
-                >
-                    <option value='Apartment'>Apartment</option>
-                    <option value='Condo'>Condo</option>
-                    <option value='House'>House</option>
-                    <option value='CabinOrCottage'>Cabin or Cottage</option>
-                    <option value='Room'>Room</option>
-                    <option value='Studio'>Studio</option>
-                    <option value='Other'>Other</option>
-                </select>
-            </div>
-            <div className='mb-4'>
-                <label className='block text-slate-700 font-bold mb-2'>
-                    Listing Name
-                </label>
-                <input
-                    type='text'
-                    id='name'
-                    name='name'
-                    className='border rounded w-full py-2 px-3 mb-2'
-                    placeholder='eg. Beautiful Apartment In Miami'
-                    required
-                    defaultValue={property.name}
-                />
-            </div>
-            <div className='mb-4'>
-                <label
-                    htmlFor='description'
-                    className='block text-slate-700 font-bold mb-2'
-                >
-                    Description
-                </label>
-                <textarea
-                    id='description'
-                    name='description'
-                    className='border rounded w-full py-2 px-3'
-                    rows='4'
-                    placeholder='Add an optional description of your property'
-                    defaultValue={property.description}
-                ></textarea>
-            </div>
-
-            <div className='mb-4 bg-blue-50 p-4'>
-                <label className='block text-slate-700 font-bold mb-2'>
-                    Location
-                </label>
-                <input
-                    type='text'
-                    id='street'
-                    name='location.street'
-                    className='border rounded w-full py-2 px-3 mb-2'
-                    placeholder='Street'
-                    defaultValue={property.location.street}
-                />
-                <input
-                    type='text'
-                    id='city'
-                    name='location.city'
-                    className='border rounded w-full py-2 px-3 mb-2'
-                    placeholder='City'
-                    required
-                    defaultValue={property.location.city}
-                />
-                <input
-                    type='text'
-                    id='state'
-                    name='location.state'
-                    className='border rounded w-full py-2 px-3 mb-2'
-                    placeholder='State'
-                    required
-                    defaultValue={property.location.state}
-                />
-                <input
-                    type='text'
-                    id='zipcode'
-                    name='location.zipcode'
-                    className='border rounded w-full py-2 px-3 mb-2'
-                    placeholder='Zipcode'
-                    defaultValue={property.location.zipcode}
-                />
-            </div>
-
-            <div className='mb-4 flex flex-wrap'>
-                <div className='w-full sm:w-1/3 pr-2'>
-                    <label
-                        htmlFor='beds'
-                        className='block text-slate-700 font-bold mb-2'
+            <div className='space-y-6'>
+                <div className='space-y-2'>
+                    <Label
+                        htmlFor='type'
+                        className='text-sm font-medium text-slate-700'
                     >
-                        Beds
-                    </label>
-                    <input
-                        type='number'
-                        id='beds'
-                        name='beds'
-                        className='border rounded w-full py-2 px-3'
+                        Property Type
+                    </Label>
+                    <Select name='type' defaultValue={property.type} required>
+                        <SelectTrigger id='type' className='w-full'>
+                            <SelectValue placeholder='Select property type' />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {[
+                                'Apartment',
+                                'Condo',
+                                'House',
+                                'Cabin or Cottage',
+                                'Room',
+                                'Studio',
+                                'Other',
+                            ].map((type) => (
+                                <SelectItem
+                                    key={type}
+                                    value={type
+                                        .toLowerCase()
+                                        .replace(/\s/g, '_')}
+                                >
+                                    {type}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+
+                <div className='space-y-2'>
+                    <Label
+                        htmlFor='name'
+                        className='text-sm font-medium text-slate-700'
+                    >
+                        Listing Name
+                    </Label>
+                    <Input
+                        id='name'
+                        name='name'
+                        placeholder='e.g. Beautiful Apartment In Miami'
                         required
-                        defaultValue={property.beds}
+                        className='w-full'
+                        defaultValue={property.name}
                     />
                 </div>
-                <div className='w-full sm:w-1/3 px-2'>
-                    <label
-                        htmlFor='baths'
-                        className='block text-slate-700 font-bold mb-2'
+
+                <div className='space-y-2'>
+                    <Label
+                        htmlFor='description'
+                        className='text-sm font-medium text-slate-700'
                     >
-                        Baths
-                    </label>
-                    <input
-                        type='number'
-                        id='baths'
-                        name='baths'
-                        className='border rounded w-full py-2 px-3'
-                        required
-                        defaultValue={property.baths}
+                        Description
+                    </Label>
+                    <Textarea
+                        id='description'
+                        name='description'
+                        placeholder='Add an optional description of your property'
+                        className='w-full'
+                        defaultValue={property.description}
                     />
                 </div>
-                <div className='w-full sm:w-1/3 pl-2'>
-                    <label
-                        htmlFor='square_feet'
-                        className='block text-slate-700 font-bold mb-2'
-                    >
-                        Square Feet
-                    </label>
-                    <input
-                        type='number'
-                        id='square_feet'
-                        name='square_feet'
-                        className='border rounded w-full py-2 px-3'
-                        required
-                        defaultValue={property.square_feet}
-                    />
+
+                <Card>
+                    <CardHeader>
+                        <CardTitle className='text-xl font-semibold text-slate-800'>
+                            Location
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent className='space-y-4'>
+                        <Input
+                            id='street'
+                            name='location.street'
+                            placeholder='Street'
+                            className='w-full'
+                            defaultValue={property.location.street}
+                        />
+                        <Input
+                            id='city'
+                            name='location.city'
+                            placeholder='City'
+                            required
+                            className='w-full'
+                            defaultValue={property.location.city}
+                        />
+                        <Input
+                            id='state'
+                            name='location.state'
+                            placeholder='State'
+                            required
+                            className='w-full'
+                            defaultValue={property.location.state}
+                        />
+                        <Input
+                            id='zipcode'
+                            name='location.zipcode'
+                            placeholder='Zipcode'
+                            className='w-full'
+                            defaultValue={property.location.zipcode}
+                        />
+                    </CardContent>
+                </Card>
+
+                <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
+                    {['Beds', 'Baths', 'Square Feet'].map((item) => (
+                        <div key={item} className='space-y-2'>
+                            <Label
+                                htmlFor={item.toLowerCase().replace(/\s/g, '_')}
+                                className='text-sm font-medium text-slate-700'
+                            >
+                                {item}
+                            </Label>
+                            <Input
+                                type='number'
+                                id={item.toLowerCase().replace(/\s/g, '_')}
+                                name={item.toLowerCase().replace(/\s/g, '_')}
+                                required
+                                className='w-full'
+                                defaultValue={
+                                    property[
+                                        item.toLowerCase().replace(/\s/g, '_')
+                                    ]
+                                }
+                            />
+                        </div>
+                    ))}
                 </div>
+
+                <Card>
+                    <CardHeader>
+                        <CardTitle className='text-xl font-semibold text-slate-800'>
+                            Amenities
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
+                            {[
+                                'Wifi',
+                                'Full kitchen',
+                                'Washer & Dryer',
+                                'Free Parking',
+                                'Swimming Pool',
+                                'Hot Tub',
+                                '24/7 Security',
+                                'Wheelchair Accessible',
+                                'Elevator Access',
+                                'Dishwasher',
+                                'Gym/Fitness Center',
+                                'Air Conditioning',
+                                'Balcony/Patio',
+                                'Smart TV',
+                                'Coffee Maker',
+                            ].map((amenity) => (
+                                <div
+                                    key={amenity}
+                                    className='flex items-center space-x-2'
+                                >
+                                    <Checkbox
+                                        id={`amenity_${amenity
+                                            .toLowerCase()
+                                            .replace(/\s/g, '_')}`}
+                                        name='amenities'
+                                        value={amenity}
+                                        defaultChecked={property.amenities.includes(
+                                            amenity
+                                        )}
+                                    />
+                                    <Label
+                                        htmlFor={`amenity_${amenity
+                                            .toLowerCase()
+                                            .replace(/\s/g, '_')}`}
+                                        className='text-sm text-slate-600'
+                                    >
+                                        {amenity}
+                                    </Label>
+                                </div>
+                            ))}
+                        </div>
+                    </CardContent>
+                </Card>
+
+                <Card>
+                    <CardHeader>
+                        <CardTitle className='text-xl font-semibold text-slate-800'>
+                            Rates (Leave blank if not applicable)
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
+                            {['Weekly', 'Monthly', 'Nightly'].map((rate) => (
+                                <div key={rate} className='space-y-2'>
+                                    <Label
+                                        htmlFor={`${rate.toLowerCase()}_rate`}
+                                        className='text-sm font-medium text-slate-700'
+                                    >
+                                        {rate}
+                                    </Label>
+                                    <Input
+                                        type='number'
+                                        id={`${rate.toLowerCase()}_rate`}
+                                        name={`rates.${rate.toLowerCase()}`}
+                                        className='w-full'
+                                        defaultValue={
+                                            property.rates[rate.toLowerCase()]
+                                        }
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </CardContent>
+                </Card>
+
+                <Card>
+                    <CardHeader>
+                        <CardTitle className='text-xl font-semibold text-slate-800'>
+                            Seller Information
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent className='space-y-4'>
+                        <div className='space-y-2'>
+                            <Label
+                                htmlFor='seller_name'
+                                className='text-sm font-medium text-slate-700'
+                            >
+                                Seller Name
+                            </Label>
+                            <Input
+                                id='seller_name'
+                                name='seller_info.name'
+                                placeholder='Name'
+                                className='w-full'
+                                defaultValue={property.seller_info.name}
+                            />
+                        </div>
+                        <div className='space-y-2'>
+                            <Label
+                                htmlFor='seller_email'
+                                className='text-sm font-medium text-slate-700'
+                            >
+                                Seller Email
+                            </Label>
+                            <Input
+                                id='seller_email'
+                                name='seller_info.email'
+                                type='email'
+                                placeholder='Email address'
+                                required
+                                className='w-full'
+                                defaultValue={property.seller_info.email}
+                            />
+                        </div>
+                        <div className='space-y-2'>
+                            <Label
+                                htmlFor='seller_phone'
+                                className='text-sm font-medium text-slate-700'
+                            >
+                                Seller Phone
+                            </Label>
+                            <Input
+                                id='seller_phone'
+                                name='seller_info.phone'
+                                type='tel'
+                                placeholder='Phone'
+                                className='w-full'
+                                defaultValue={property.seller_info.phone}
+                            />
+                        </div>
+                    </CardContent>
+                </Card>
             </div>
 
-            <div className='mb-4'>
-                <label className='block text-slate-700 font-bold mb-2'>
-                    Amenities
-                </label>
-                <div className='grid grid-cols-2 md:grid-cols-3 gap-2'>
-                    <div>
-                        <input
-                            type='checkbox'
-                            id='amenity_wifi'
-                            name='amenities'
-                            value='Wifi'
-                            className='mr-2'
-                            defaultChecked={property.amenities.includes('Wifi')}
-                        />
-                        <label htmlFor='amenity_wifi'>Wifi</label>
-                    </div>
-                    <div>
-                        <input
-                            type='checkbox'
-                            id='amenity_kitchen'
-                            name='amenities'
-                            value='Full kitchen'
-                            className='mr-2'
-                            defaultChecked={property.amenities.includes(
-                                'Full kitchen'
-                            )}
-                        />
-                        <label htmlFor='amenity_kitchen'>Full kitchen</label>
-                    </div>
-                    <div>
-                        <input
-                            type='checkbox'
-                            id='amenity_washer_dryer'
-                            name='amenities'
-                            value='Washer & Dryer'
-                            className='mr-2'
-                            defaultChecked={property.amenities.includes(
-                                'Washer & Dryer'
-                            )}
-                        />
-                        <label htmlFor='amenity_washer_dryer'>
-                            Washer & Dryer
-                        </label>
-                    </div>
-                    <div>
-                        <input
-                            type='checkbox'
-                            id='amenity_free_parking'
-                            name='amenities'
-                            value='Free Parking'
-                            className='mr-2'
-                            defaultChecked={property.amenities.includes(
-                                'Free Parking'
-                            )}
-                        />
-                        <label htmlFor='amenity_free_parking'>
-                            Free Parking
-                        </label>
-                    </div>
-                    <div>
-                        <input
-                            type='checkbox'
-                            id='amenity_pool'
-                            name='amenities'
-                            value='Swimming Pool'
-                            className='mr-2'
-                            defaultChecked={property.amenities.includes(
-                                'Swimming Pool'
-                            )}
-                        />
-                        <label htmlFor='amenity_pool'>Swimming Pool</label>
-                    </div>
-                    <div>
-                        <input
-                            type='checkbox'
-                            id='amenity_hot_tub'
-                            name='amenities'
-                            value='Hot Tub'
-                            className='mr-2'
-                            defaultChecked={property.amenities.includes(
-                                'Hot Tub'
-                            )}
-                        />
-                        <label htmlFor='amenity_hot_tub'>Hot Tub</label>
-                    </div>
-                    <div>
-                        <input
-                            type='checkbox'
-                            id='amenity_24_7_security'
-                            name='amenities'
-                            value='24/7 Security'
-                            className='mr-2'
-                            defaultChecked={property.amenities.includes(
-                                '24/7 Security'
-                            )}
-                        />
-                        <label htmlFor='amenity_24_7_security'>
-                            24/7 Security
-                        </label>
-                    </div>
-                    <div>
-                        <input
-                            type='checkbox'
-                            id='amenity_wheelchair_accessible'
-                            name='amenities'
-                            value='Wheelchair Accessible'
-                            className='mr-2'
-                            defaultChecked={property.amenities.includes(
-                                'Wheelchair Accessible'
-                            )}
-                        />
-                        <label htmlFor='amenity_wheelchair_accessible'>
-                            Wheelchair Accessible
-                        </label>
-                    </div>
-                    <div>
-                        <input
-                            type='checkbox'
-                            id='amenity_elevator_access'
-                            name='amenities'
-                            value='Elevator Access'
-                            className='mr-2'
-                            defaultChecked={property.amenities.includes(
-                                'Elevator Access'
-                            )}
-                        />
-                        <label htmlFor='amenity_elevator_access'>
-                            Elevator Access
-                        </label>
-                    </div>
-                    <div>
-                        <input
-                            type='checkbox'
-                            id='amenity_dishwasher'
-                            name='amenities'
-                            value='Dishwasher'
-                            className='mr-2'
-                            defaultChecked={property.amenities.includes(
-                                'Dishwasher'
-                            )}
-                        />
-                        <label htmlFor='amenity_dishwasher'>Dishwasher</label>
-                    </div>
-                    <div>
-                        <input
-                            type='checkbox'
-                            id='amenity_gym_fitness_center'
-                            name='amenities'
-                            value='Gym/Fitness Center'
-                            className='mr-2'
-                            defaultChecked={property.amenities.includes(
-                                'Gym/Fitness Center'
-                            )}
-                        />
-                        <label htmlFor='amenity_gym_fitness_center'>
-                            Gym/Fitness Center
-                        </label>
-                    </div>
-                    <div>
-                        <input
-                            type='checkbox'
-                            id='amenity_air_conditioning'
-                            name='amenities'
-                            value='Air Conditioning'
-                            className='mr-2'
-                            defaultChecked={property.amenities.includes(
-                                'Air Conditioning'
-                            )}
-                        />
-                        <label htmlFor='amenity_air_conditioning'>
-                            Air Conditioning
-                        </label>
-                    </div>
-                    <div>
-                        <input
-                            type='checkbox'
-                            id='amenity_balcony_patio'
-                            name='amenities'
-                            value='Balcony/Patio'
-                            className='mr-2'
-                            defaultChecked={property.amenities.includes(
-                                'Balcony/Patio'
-                            )}
-                        />
-                        <label htmlFor='amenity_balcony_patio'>
-                            Balcony/Patio
-                        </label>
-                    </div>
-                    <div>
-                        <input
-                            type='checkbox'
-                            id='amenity_smart_tv'
-                            name='amenities'
-                            value='Smart TV'
-                            className='mr-2'
-                            defaultChecked={property.amenities.includes(
-                                'Smart TV'
-                            )}
-                        />
-                        <label htmlFor='amenity_smart_tv'>Smart TV</label>
-                    </div>
-                    <div>
-                        <input
-                            type='checkbox'
-                            id='amenity_coffee_maker'
-                            name='amenities'
-                            value='Coffee Maker'
-                            className='mr-2'
-                            defaultChecked={property.amenities.includes(
-                                'Coffee Maker'
-                            )}
-                        />
-                        <label htmlFor='amenity_coffee_maker'>
-                            Coffee Maker
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div className='mb-4 bg-blue-50 p-4'>
-                <label className='block text-slate-700 font-bold mb-2'>
-                    Rates (Leave blank if not applicable)
-                </label>
-                <div className='flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4'>
-                    <div className='flex items-center'>
-                        <label htmlFor='weekly_rate' className='mr-2'>
-                            Weekly
-                        </label>
-                        <input
-                            type='number'
-                            id='weekly_rate'
-                            name='rates.weekly'
-                            className='border rounded w-full py-2 px-3'
-                            defaultValue={property.rates.weekly}
-                        />
-                    </div>
-                    <div className='flex items-center'>
-                        <label htmlFor='monthly_rate' className='mr-2'>
-                            Monthly
-                        </label>
-                        <input
-                            type='number'
-                            id='monthly_rate'
-                            name='rates.monthly'
-                            className='border rounded w-full py-2 px-3'
-                            defaultValue={property.rates.monthly}
-                        />
-                    </div>
-                    <div className='flex items-center'>
-                        <label htmlFor='nightly_rate' className='mr-2'>
-                            Nightly
-                        </label>
-                        <input
-                            type='number'
-                            id='nightly_rate'
-                            name='rates.nightly'
-                            className='border rounded w-full py-2 px-3'
-                            defaultValue={property.rates.nightly}
-                        />
-                    </div>
-                </div>
-            </div>
-
-            <div className='mb-4'>
-                <label
-                    htmlFor='seller_name'
-                    className='block text-slate-700 font-bold mb-2'
-                >
-                    Seller Name
-                </label>
-                <input
-                    type='text'
-                    id='seller_name'
-                    name='seller_info.name.'
-                    className='border rounded w-full py-2 px-3'
-                    placeholder='Name'
-                    defaultValue={property.seller_info.name}
-                />
-            </div>
-            <div className='mb-4'>
-                <label
-                    htmlFor='seller_email'
-                    className='block text-slate-700 font-bold mb-2'
-                >
-                    Seller Email
-                </label>
-                <input
-                    type='email'
-                    id='seller_email'
-                    name='seller_info.email'
-                    className='border rounded w-full py-2 px-3'
-                    placeholder='Email address'
-                    required
-                    defaultValue={property.seller_info.email}
-                />
-            </div>
-            <div className='mb-4'>
-                <label
-                    htmlFor='seller_phone'
-                    className='block text-slate-700 font-bold mb-2'
-                >
-                    Seller Phone
-                </label>
-                <input
-                    type='tel'
-                    id='seller_phone'
-                    name='seller_info.phone'
-                    className='border rounded w-full py-2 px-3'
-                    placeholder='Phone'
-                    defaultValue={property.seller_info.phone}
-                />
-            </div>
-            <div>
-                <button
-                    className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md w-full focus:outline-none focus:shadow-outline'
-                    type='submit'
-                >
-                    Update Property
-                </button>
-            </div>
+            <Button
+                className='w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-md transition-colors duration-300'
+                type='submit'
+                disabled={isSaving}
+            >
+                {isSaving && <Loader2 className='mr-2 h-4 w-4 animate-spin' />}
+                {isSaving ? 'Updating Property' : 'Update Property'}
+            </Button>
         </form>
     );
-};
-export default PropertyEditForm;
+}

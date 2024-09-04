@@ -1,9 +1,12 @@
 import PropertyEditForm from '@/components/PropertyEditForm';
+import { Card, CardContent } from '@/components/ui/card';
 import connectDB from '@/config/database';
 import Property from '@/models/Property';
 import { convertToSerializeableObject } from '@/utils/convertToObject';
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const PropertyEditPage = async ({ params }) => {
+await delay(5000);
     await connectDB();
     const propertyDoc = await Property.findById(params.id).lean();
     const property = convertToSerializeableObject(propertyDoc);
@@ -17,11 +20,13 @@ const PropertyEditPage = async ({ params }) => {
     }
 
     return (
-        <section className='bg-slate-100'>
-            <div className='container m-auto max-w-2xl py-24'>
-                <div className='bg-white px-6 py-8 mb-4 shadow-sm rounded-md border m-4 md:m-0'>
-                    <PropertyEditForm property={property} />
-                </div>
+        <section className='bg-slate-100 min-h-screen py-4 sm:py-12'>
+            <div className='container mx-auto max-w-4xl px-4'>
+                <Card className='shadow-sm border-0'>
+                    <CardContent className='p-4 sm:p-8'>
+                        <PropertyEditForm property={property} />
+                    </CardContent>
+                </Card>
             </div>
         </section>
     );

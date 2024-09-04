@@ -1,14 +1,21 @@
 'use client';
+
 import { useState } from 'react';
 import { toast } from 'sonner';
 import markMessageAsRead from '@/app/actions/markMessageAsRead';
 import deleteMessage from '@/app/actions/deleteMessage';
 import { useGlobalContext } from '@/context/GlobalContext';
+import { Button } from '@/components/ui/button';
+import {
+    Card,
+    CardContent,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
 
-const MessageCard = ({ message }) => {
+export default function Component({ message }) {
     const [isRead, setIsRead] = useState(message.read);
-    const [isDeleted, setIsDeleted] = useState(false);
-
     const { setUnreadCount } = useGlobalContext();
 
     const handleReadClick = async () => {
@@ -20,81 +27,92 @@ const MessageCard = ({ message }) => {
 
     const handleDeleteClick = async () => {
         await deleteMessage(message._id);
-        setIsDeleted(true);
         setUnreadCount((prevCount) => (isRead ? prevCount : prevCount - 1));
         toast.success('Message Deleted');
     };
 
-    if (isDeleted) {
-        return <p>Deleted message</p>;
-    }
-
     return (
-        <div className='bg-white rounded-lg shadow-sm overflow-hidden border border-slate-200'>
-            <div className='p-6'>
-                <div className='flex justify-between items-center mb-4'>
-                    <h2 className='text-2xl font-bold text-slate-800 text-center flex-grow'>
-                        {message.property.name}
-                    </h2>
+        <Card>
+            <CardHeader>
+                <CardTitle className='flex justify-between items-center'>
+                    <span>{message.property.name}</span>
                     {!isRead && (
-                        <span className='bg-yellow-400 text-yellow-800 text-sm font-semibold px-3 py-1 rounded-full ml-4'>
+                        <span className='bg-emerald-100 text-emerald-600 text-sm font-semibold px-3 py-1 rounded-full'>
                             New
                         </span>
                     )}
-                </div>
-                <div className='bg-slate-100 p-4 rounded-lg mb-4'>
-                    <p className='text-slate-700 font-semibold'>
-                        {message.body}
-                    </p>
-                </div>
-                <div className='space-y-2'>
-                    <div className='flex items-center'>
-                        <span className='text-slate-600 w-24'>From:</span>
-                        <a
-                            href={`mailto:${message.email}`}
-                            className='text-slate-600 font-semibold no-underline hover:underline'
-                        >
-                            {message.email}
-                        </a>
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <div className='space-y-4'>
+                    <div>
+                        <h3 className='text-sm font-semibold text-slate-500 mb-1'>
+                            Message:
+                        </h3>
+                        <div className='bg-slate-100 p-4 rounded-lg'>
+                            <p className='text-slate-700 font-semibold'>
+                                {message.body}
+                            </p>
+                        </div>
                     </div>
-                    <div className='flex items-center'>
-                        <span className='text-slate-600 w-24'>Phone:</span>
-                        <a
-                            href={`tel:${message.phone}`}
-                            className='text-slate-600 font-semibold no-underline hover:underline'
-                        >
-                            {message.phone}
-                        </a>
-                    </div>
-
-                    <div className='flex items-center'>
-                        <span className='text-slate-600 w-24'>Received:</span>
-                        <span className='text-slate-600 font-semibold'>
-                            {new Date(message.createdAt).toLocaleString()}
-                        </span>
+                    <div className='space-y-2'>
+                        <div className='flex flex-col sm:flex-row sm:items-center'>
+                            <h3 className='text-sm font-semibold text-slate-500 mb-1 sm:mb-0 sm:mr-2 sm:w-16'>
+                                From:
+                            </h3>
+                            <div className='flex items-center'>
+                                <a
+                                    href={`mailto:${message.email}`}
+                                    className='text-slate-600 font-semibold no-underline hover:underline'
+                                >
+                                    {message.email}
+                                </a>
+                            </div>
+                        </div>
+                        <div className='flex flex-col sm:flex-row sm:items-center'>
+                            <h3 className='text-sm font-semibold text-slate-500 mb-1 sm:mb-0 sm:mr-2 sm:w-16'>
+                                Phone:
+                            </h3>
+                            <div className='flex items-center'>
+                                <a
+                                    href={`tel:${message.phone}`}
+                                    className='text-slate-600 font-semibold no-underline hover:underline'
+                                >
+                                    {message.phone}
+                                </a>
+                            </div>
+                        </div>
+                        <div className='flex flex-col sm:flex-row sm:items-center'>
+                            <h3 className='text-sm font-semibold text-slate-500 mb-1 sm:mb-0 sm:mr-2 sm:w-16'>
+                                Date:
+                            </h3>
+                            <div className='flex items-center'>
+                                <span className='text-slate-600 font-semibold'>
+                                    {new Date(
+                                        message.createdAt
+                                    ).toLocaleString()}
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className='bg-slate-50 px-6 py-4 flex justify-end'>
-                <button
+            </CardContent>
+            <CardFooter className='flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-4'>
+                <Button
                     onClick={handleReadClick}
-                    className={`mr-4 px-4 py-2 rounded-md font-medium transition-colors duration-300 ${
-                        isRead
-                            ? 'bg-slate-200 text-slate-700 hover:bg-slate-300'
-                            : 'bg-blue-500 text-white hover:bg-blue-600'
-                    }`}
+                    variant={isRead ? 'secondary' : 'default'}
+                    className='w-full sm:w-auto'
                 >
                     {isRead ? 'Mark As New' : 'Mark As Read'}
-                </button>
-                <button
+                </Button>
+                <Button
                     onClick={handleDeleteClick}
-                    className='px-4 py-2 bg-red-500 text-white rounded-md font-medium hover:bg-red-600 transition-colors duration-300'
+                    variant='destructive'
+                    className='w-full sm:w-auto'
                 >
                     Delete
-                </button>
-            </div>
-        </div>
+                </Button>
+            </CardFooter>
+        </Card>
     );
-};
-
-export default MessageCard;
+}

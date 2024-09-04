@@ -11,7 +11,6 @@ const MessagePage = async () => {
     const sessionUser = await getSessionUser();
 
     const { userId } = sessionUser;
-    console.log(userId);
 
     const readMessages = await Message.find({ recipient: userId, read: true })
         .sort({ createdAt: -1 })
@@ -36,23 +35,20 @@ const MessagePage = async () => {
     });
 
     return (
-        <section className='bg-blue-50 flex-grow'>
-            <div className='container mx-auto py-24 max-w-6xl'>
-                <div className='px-6 py-8 mb-4 m-4 md:m-0'>
-                    <h1 className='text-3xl font-bold mb-4'>Your Messages</h1>
+        <section className='bg-slate-50 flex-grow min-h-screen'>
+            <div className='container mx-auto py-8 px-4 sm:px-6 lg:px-8 max-w-6xl'>
+                <h1 className='text-3xl font-bold mb-6'>Your Messages</h1>
 
-                    <div className='space-y-4'>
-                        {messages.length === 0 ? (
-                            <p>You have no messages</p>
-                        ) : (
-                            messages.map((message) => (
-                                <MessageCard
-                                    key={message._id}
-                                    message={message}
-                                />
-                            ))
-                        )}
-                    </div>
+                <div className='space-y-4'>
+                    {messages.length === 0 ? (
+                        <p className='text-center text-gray-500'>
+                            You have no messages
+                        </p>
+                    ) : (
+                        messages.map((message) => (
+                            <MessageCard key={message._id} message={message} />
+                        ))
+                    )}
                 </div>
             </div>
         </section>

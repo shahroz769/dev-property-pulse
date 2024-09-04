@@ -112,7 +112,7 @@ export default function Loading() {
                                 <Skeleton className='bg-slate-200 h-10 w-full' />
                             </div>
 
-                            <Skeleton className='bg-slate-200 h-12 w-full' />
+                            <Skeleton className='bg-slate-200 h-10 w-full' />
                         </div>
                     </CardContent>
                 </Card>
