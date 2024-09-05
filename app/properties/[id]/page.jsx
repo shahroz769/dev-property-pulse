@@ -10,6 +10,22 @@ import { convertToSerializeableObject } from '@/utils/convertToObject';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
+// Enable ISR with a revalidation period of one day
+export const revalidate = 86400; // 24 hours in seconds
+
+// Enable dynamic params for on-demand rendering of new properties
+export const dynamicParams = true;
+
+// Define the generateStaticParams function for static generation
+export async function generateStaticParams() {
+    await connectDB();
+    const properties = await Property.find({}, '_id');
+
+    return properties.map((property) => ({
+        id: property._id.toString(),
+    }));
+}
+
 const PropertyPage = async ({ params }) => {
     await connectDB();
     const propertyDoc = await Property.findById(params.id).lean();
@@ -57,4 +73,5 @@ const PropertyPage = async ({ params }) => {
         </>
     );
 };
+
 export default PropertyPage;

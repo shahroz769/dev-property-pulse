@@ -14,30 +14,9 @@ export default function Component({ page, pageSize, totalItems }) {
 
     const getPageNumbers = () => {
         const pageNumbers = [];
-        const maxVisiblePages = 5;
-        const halfVisible = Math.floor(maxVisiblePages / 2);
-
-        let start = Math.max(1, page - halfVisible);
-        let end = Math.min(totalPages, start + maxVisiblePages - 1);
-
-        if (end - start + 1 < maxVisiblePages) {
-            start = Math.max(1, end - maxVisiblePages + 1);
-        }
-
-        if (start > 1) {
-            pageNumbers.push(1);
-            if (start > 2) pageNumbers.push('ellipsis');
-        }
-
-        for (let i = start; i <= end; i++) {
-            pageNumbers.push(i);
-        }
-
-        if (end < totalPages) {
-            if (end < totalPages - 1) pageNumbers.push('ellipsis');
-            pageNumbers.push(totalPages);
-        }
-
+        if (page > 1) pageNumbers.push(page - 1);
+        pageNumbers.push(page);
+        if (page < totalPages) pageNumbers.push(page + 1);
         return pageNumbers;
     };
 
@@ -60,36 +39,66 @@ export default function Component({ page, pageSize, totalItems }) {
                         />
                     </Link>
                 </PaginationItem>
-                {getPageNumbers().map((pageNumber, index) => (
-                    <PaginationItem key={index}>
-                        {pageNumber === 'ellipsis' ? (
+
+                {page > 2 && (
+                    <>
+                        <PaginationItem>
+                            <Link href='/properties/1' passHref legacyBehavior>
+                                <PaginationLink className='hover:bg-slate-100'>
+                                    1
+                                </PaginationLink>
+                            </Link>
+                        </PaginationItem>
+                        <PaginationItem>
                             <PaginationEllipsis />
-                        ) : (
+                        </PaginationItem>
+                    </>
+                )}
+
+                {getPageNumbers().map((pageNumber) => (
+                    <PaginationItem key={pageNumber}>
+                        <Link
+                            href={`/properties/${pageNumber}`}
+                            passHref
+                            legacyBehavior
+                        >
+                            <PaginationLink
+                                isActive={pageNumber === page}
+                                className={
+                                    pageNumber === page
+                                        ? 'bg-slate-800 hover:bg-slate-700 text-white hover:text-white'
+                                        : 'hover:bg-slate-100'
+                                }
+                            >
+                                {pageNumber}
+                            </PaginationLink>
+                        </Link>
+                    </PaginationItem>
+                ))}
+
+                {page < totalPages - 1 && (
+                    <>
+                        <PaginationItem>
+                            <PaginationEllipsis />
+                        </PaginationItem>
+                        <PaginationItem>
                             <Link
-                                href={`/properties?page=${pageNumber}`}
+                                href={`/properties/${totalPages}`}
                                 passHref
                                 legacyBehavior
                             >
-                                <PaginationLink
-                                    isActive={pageNumber === page}
-                                    className={
-                                        pageNumber === page
-                                            ? 'bg-slate-800 hover:bg-slate-700 text-white hover:text-white'
-                                            : 'hover:bg-slate-100'
-                                    }
-                                >
-                                    {pageNumber}
+                                <PaginationLink className='hover:bg-slate-100'>
+                                    {totalPages}
                                 </PaginationLink>
                             </Link>
-                        )}
-                    </PaginationItem>
-                ))}
+                        </PaginationItem>
+                    </>
+                )}
+
                 <PaginationItem>
                     <Link
                         href={
-                            page < totalPages
-                                ? `/properties?page=${page + 1}`
-                                : '#'
+                            page < totalPages ? `/properties/${page + 1}` : '#'
                         }
                         passHref
                         legacyBehavior
