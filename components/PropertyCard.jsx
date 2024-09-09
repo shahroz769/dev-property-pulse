@@ -51,8 +51,8 @@ const PropertyCard = ({ property }) => {
     );
 
     return (
-        <div className='rounded-xl bg-slate-50 relative shadow-sm'>
-            <div className='relative w-full h-[300px]'>
+        <div className='rounded-xl bg-slate-50 relative shadow-sm overflow-hidden'>
+            <div className='relative w-full h-[300px] overflow-hidden rounded-t-xl'>
                 <Link href={`/properties/${property._id}`}>
                     <div className='block 2xs:hidden'>
                         <PropertyCardBlurPlaceholder

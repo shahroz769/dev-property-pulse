@@ -154,6 +154,7 @@ const Navbar = () => {
                                             alt='Profile'
                                             width={32}
                                             height={32}
+                                            unoptimized
                                         />
                                     </button>
                                     {isProfileMenuOpen && (

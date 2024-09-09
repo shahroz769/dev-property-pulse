@@ -52,7 +52,7 @@ const PropertyImages = ({ images }) => {
                                     onClick={open}
                                     src={cloudinaryImages[0].thumbnailUrl}
                                     alt='Property'
-                                    className='object-cover h-[400px] cursor-pointer mx-auto rounded-xl hover:opacity-75 transition duration-300 ease-in-out'
+                                    className='object-cover h-[400px] cursor-pointer mx-auto rounded-xl hover:opacity-90 transition duration-500 ease-in-out'
                                     width={1800}
                                     height={400}
                                     unoptimized
@@ -89,7 +89,7 @@ const PropertyImages = ({ images }) => {
                                                 onClick={open}
                                                 src={image.thumbnailUrl}
                                                 alt='Property'
-                                                className='object-cover h-[400px] w-full rounded-xl cursor-pointer hover:opacity-75 transition duration-300 ease-in-out'
+                                                className='object-cover h-[400px] w-full rounded-xl cursor-pointer hover:opacity-90 transition duration-500 ease-in-out'
                                                 width={0}
                                                 height={0}
                                                 unoptimized

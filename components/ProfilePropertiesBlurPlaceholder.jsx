@@ -16,7 +16,7 @@ const ProfilePropertiesBlurPlaceholder = ({ src, alt, thumbhash }) => {
             alt={alt}
             width={500}
             height={300}
-            className='w-full h-48 object-cover hover:opacity-75 transition duration-300 ease-in-out'
+            className='w-full h-48 object-cover hover:opacity-90 transition duration-500 ease-in-out'
             unoptimized
             placeholder='blur'
             blurDataURL={createPngDataUri(thumbhash)}

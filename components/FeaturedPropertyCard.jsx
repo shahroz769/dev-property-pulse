@@ -51,8 +51,8 @@ const FeaturedPropertyCard = ({ property }) => {
     );
 
     return (
-        <div className='bg-white rounded-xl shadow-sm relative flex flex-col lg:flex-row'>
-            <div className='relative w-full lg:w-[260px] min-h-[260px] max-h-max'>
+        <div className='bg-white rounded-xl shadow-sm relative flex flex-col lg:flex-row overflow-hidden'>
+            <div className='relative overflow-hidden w-full lg:w-[260px] min-h-[260px] max-h-max'>
                 <Link href={`/properties/${property._id}`}>
                     <div>
                         <div className='hidden 3xl:block'>

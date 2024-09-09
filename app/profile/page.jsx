@@ -28,13 +28,14 @@ const ProfilePage = async () => {
                         <div className='flex flex-col md:flex-row md:items-center md:space-x-8'>
                             <div className='flex-shrink-0 mb-6 md:mb-0'>
                                 <Image
-                                    className='h-32 w-32 rounded-full object-cover hover:opacity-75 transition duration-300 ease-in-out'
+                                    className='h-32 w-32 rounded-full object-cover hover:opacity-90 transition duration-500 ease-in-out'
                                     src={
                                         sessionUser.user.image || profileDefault
                                     }
                                     width={200}
                                     height={200}
                                     alt={sessionUser.user.name}
+                                    unoptimized
                                 />
                             </div>
                             <div>

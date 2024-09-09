@@ -39,8 +39,8 @@ export default function Component({ property, onDelete }) {
     );
 
     return (
-        <div className='rounded-xl relative shadow-sm bg-white'>
-            <div className='relative w-full h-[300px]'>
+        <div className='rounded-xl relative shadow-sm bg-white overflow-hidden'>
+            <div className='relative w-full h-[300px] overflow-hidden'>
                 <Link href={`/properties/${property._id}`}>
                     <div className='block 2xs:hidden'>
                         <PropertyCardBlurPlaceholder

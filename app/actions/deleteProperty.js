@@ -37,8 +37,6 @@ async function deleteProperty(propertyId) {
         })
         .filter((id) => id !== null); // Filter out any nulls
 
-    console.log('Extracted public IDs:', publicIds); // Log the extracted public IDs
-
     // Delete images from Cloudinary
     if (publicIds.length > 0) {
         try {
