@@ -55,7 +55,7 @@ const FeaturedPropertyCard = ({ property }) => {
             <div className='relative overflow-hidden w-full lg:w-[260px] min-h-[260px] max-h-max'>
                 <Link href={`/properties/${property._id}`}>
                     <div>
-                        <div className='hidden 3xl:block'>
+                        <div className='hidden 2xl:block'>
                             <FeaturedPropertyCardBlurPlaceholder
                                 src={transformedImage3xl}
                                 alt={property.name}
