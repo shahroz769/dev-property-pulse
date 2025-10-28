@@ -18,11 +18,11 @@
         "class-variance-authority": "^0.7.0",
         "cloudinary": "^2.2.0",
         "clsx": "^2.1.1",
-        "eslint-config-next": "^14.2.7",
+        "eslint-config-next": "^16.0.1",
         "lucide-react": "^0.436.0",
         "mongodb": "^6.8.0",
         "mongoose": "^8.5.0",
-        "next": "^14.2.8",
+        "next": "^16.0.1",
         "next-auth": "^4.24.7",
         "next-themes": "^0.3.0",
         "photoswipe": "^5.4.4",
@@ -39,7 +39,11 @@
         "unlazy": "^0.11.3"
     },
     "devDependencies": {
+        "@eslint/eslintrc": "^3.3.1",
+        "@eslint/js": "^9.38.0",
+        "eslint": "^9.38.0",
         "postcss": "^8",
-        "tailwindcss": "^3.4.1"
+        "tailwindcss": "^3.4.1",
+        "typescript": "^5.9.3"
     }
 }
