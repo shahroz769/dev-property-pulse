@@ -46,6 +46,7 @@ export default [
         settings: {
             react: {
                 version: 'detect',
+                runtime: 'automatic',
             },
         },
         rules: {
