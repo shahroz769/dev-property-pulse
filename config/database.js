@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
 
-let cached = global.mongoose;
+// Use globalThis for better compatibility across environments
+let cached = globalThis.mongoose;
 
 if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
+  cached = globalThis.mongoose = { conn: null, promise: null };
 }
 
 const connectDB = async () => {
@@ -34,6 +35,7 @@ const connectDB = async () => {
     cached.conn = await cached.promise;
   } catch (error) {
     cached.promise = null;
+    cached.conn = null;
     console.error('MongoDB connection error:', error);
     throw error;
   }
