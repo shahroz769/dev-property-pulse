@@ -1,4 +1,5 @@
-import { Poppins } from 'next/font/google';
+// Commented out Google Fonts due to network restrictions in build environment
+// import { Poppins } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AuthProvider from '@/components/AuthProvider';
@@ -13,18 +14,18 @@ export const metadata = {
     keywords: 'rental, property, real estate',
 };
 
-const poppins = Poppins({
-    weight: ['400', '500', '600', '700', '800'],
-    subsets: ['latin'],
-    display: 'swap',
-});
+// const poppins = Poppins({
+//     weight: ['400', '500', '600', '700', '800'],
+//     subsets: ['latin'],
+//     display: 'swap',
+// });
 
 const MainLayout = ({ children }) => {
     return (
         <AuthProvider>
             <GlobalProvider>
-                <html lang='en' className={poppins.className}>
-                    <body className='flex flex-col min-h-screen'>
+                <html lang='en'>
+                    <body className='flex flex-col min-h-screen font-sans'>
                         <Navbar />
                         <main className='flex-grow'>{children}</main>
                         <Footer />

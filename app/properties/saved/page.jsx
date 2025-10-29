@@ -3,6 +3,9 @@ import connectDB from '@/config/database';
 import User from '@/models/User';
 import { getSessionUser } from '@/utils/getSessionUser';
 
+// Force dynamic rendering since this page requires database and session access
+export const dynamic = 'force-dynamic';
+
 const SavedPropertiesPage = async () => {
     await connectDB();
 

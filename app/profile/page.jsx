@@ -6,6 +6,9 @@ import { convertToSerializeableObject } from '@/utils/convertToObject';
 import ProfileProperties from '@/components/ProfileProperties';
 import profileDefault from '@/assets/images/profile.png';
 
+// Force dynamic rendering since this page requires database and session access
+export const dynamic = 'force-dynamic';
+
 const ProfilePage = async () => {
     await connectDB();
 

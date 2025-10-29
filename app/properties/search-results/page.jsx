@@ -4,6 +4,9 @@ import connectDB from '@/config/database';
 import Property from '@/models/Property';
 import { convertToSerializeableObject } from '@/utils/convertToObject';
 
+// Force dynamic rendering since this page requires database access
+export const dynamic = 'force-dynamic';
+
 const SearchResultsPage = async ({
     searchParams: { location, propertyType },
 }) => {

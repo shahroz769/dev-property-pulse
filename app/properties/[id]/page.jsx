@@ -18,12 +18,18 @@ export const dynamicParams = true;
 
 // Define the generateStaticParams function for static generation
 export async function generateStaticParams() {
-    await connectDB();
-    const properties = await Property.find({}, '_id');
+    // Return empty array during build if DB not available
+    try {
+        await connectDB();
+        const properties = await Property.find({}, '_id');
 
-    return properties.map((property) => ({
-        id: property._id.toString(),
-    }));
+        return properties.map((property) => ({
+            id: property._id.toString(),
+        }));
+    } catch (error) {
+        console.warn('Database connection failed during static generation, skipping:', error.message);
+        return [];
+    }
 }
 
 const PropertyPage = async ({ params }) => {

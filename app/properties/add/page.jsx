@@ -1,6 +1,9 @@
 import PropertyAddForm from '@/components/PropertyAddForm';
 import { Card, CardContent } from '@/components/ui/card';
 
+// Force dynamic rendering since this page is protected
+export const dynamic = 'force-dynamic';
+
 export default async function PropertyAddPage() {
     return (
         <section className='bg-slate-100 min-h-screen py-4 sm:py-12'>

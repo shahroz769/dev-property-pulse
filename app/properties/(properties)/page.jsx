@@ -1,6 +1,10 @@
 import PropertyCard from '@/components/PropertyCard';
 import PropertySearchForm from '@/components/PropertySearchForm';
 import Pagination from '@/components/Pagination';
+
+// Force dynamic rendering since this page requires database access
+export const dynamic = 'force-dynamic';
+
 const PropertiesPage = async ({ searchParams: { pageSize = 9, page = 1 } }) => {
     const skip = (page - 1) * pageSize;
 

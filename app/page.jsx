@@ -10,6 +10,9 @@ import {
     HomePropertiesSkeleton,
 } from '@/components/HomeSkeletons';
 
+// Force dynamic rendering since this page requires database access
+export const dynamic = 'force-dynamic';
+
 const HomePage = () => {
     return (
         <>

@@ -5,6 +5,9 @@ import '@/models/Property';
 import { convertToSerializeableObject } from '@/utils/convertToObject';
 import { getSessionUser } from '@/utils/getSessionUser';
 
+// Force dynamic rendering since this page requires database and session access
+export const dynamic = 'force-dynamic';
+
 const MessagePage = async () => {
     await connectDB();
 
