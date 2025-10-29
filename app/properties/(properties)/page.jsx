@@ -1,7 +1,9 @@
 import PropertyCard from '@/components/PropertyCard';
 import PropertySearchForm from '@/components/PropertySearchForm';
 import Pagination from '@/components/Pagination';
-const PropertiesPage = async ({ searchParams: { pageSize = 9, page = 1 } }) => {
+const PropertiesPage = async ({ searchParams }) => {
+    // In Next.js 16, searchParams is a Promise and must be awaited
+    const { pageSize = 9, page = 1 } = await searchParams;
     const skip = (page - 1) * pageSize;
 
     return (

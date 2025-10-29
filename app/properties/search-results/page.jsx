@@ -4,9 +4,10 @@ import connectDB from '@/config/database';
 import Property from '@/models/Property';
 import { convertToSerializeableObject } from '@/utils/convertToObject';
 
-const SearchResultsPage = async ({
-    searchParams: { location, propertyType },
-}) => {
+const SearchResultsPage = async ({ searchParams }) => {
+    // In Next.js 16, searchParams is a Promise and must be awaited
+    const { location, propertyType } = await searchParams;
+    
     await connectDB();
 
     const locationPattern = new RegExp(location, 'i');

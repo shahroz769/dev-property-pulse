@@ -12,11 +12,10 @@ export default function BookmarkButton({ property }) {
     const { data: session } = useSession();
     const userId = session?.user?.id;
     const [isBookmarked, setIsBookmarked] = useState(false);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(!userId ? false : true);
 
     useEffect(() => {
         if (!userId) {
-            setLoading(false);
             return;
         }
 

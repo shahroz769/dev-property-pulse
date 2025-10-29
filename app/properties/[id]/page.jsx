@@ -27,8 +27,11 @@ export async function generateStaticParams() {
 }
 
 const PropertyPage = async ({ params }) => {
+    // In Next.js 16, params is a Promise and must be awaited
+    const { id } = await params;
+    
     await connectDB();
-    const propertyDoc = await Property.findById(params.id).lean();
+    const propertyDoc = await Property.findById(id).lean();
     const property = convertToSerializeableObject(propertyDoc);
 
     if (!property) {

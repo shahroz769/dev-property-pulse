@@ -14,13 +14,7 @@ import SubmitMessageButton from './SubmitMessageButton';
 export default function PropertyContactForm({ property }) {
     const { data: session, status } = useSession();
     const [state, formAction] = useFormState(addMessage, {});
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        if (status !== 'loading') {
-            setIsLoading(false);
-        }
-    }, [status]);
+    const isLoading = status === 'loading';
 
     useEffect(() => {
         if (state.error) toast.error(state.error);
