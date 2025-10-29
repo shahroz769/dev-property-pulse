@@ -2,6 +2,7 @@ import connectDB from '@/config/database';
 import User from '@/models/User';
 
 import GoogleProvider from 'next-auth/providers/google';
+import NextAuth from 'next-auth';
 
 export const authOptions = {
   providers: [
@@ -49,3 +50,5 @@ export const authOptions = {
     },
   },
 };
+
+export const { handlers, auth, signIn, signOut } = NextAuth(authOptions);
