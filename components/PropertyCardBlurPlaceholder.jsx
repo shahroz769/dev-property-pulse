@@ -6,11 +6,9 @@ import { createPngDataUri } from 'unlazy/thumbhash';
 
 const PropertyCardBlurPlaceholder = ({ src, alt, thumbhash }) => {
     const [imageSrc, setImageSrc] = useState(src);
-    const [, setKey] = useState(0);
 
     const handleError = () => {
         setImageSrc('/images/placeholder.svg');
-        setKey((prevKey) => prevKey + 1);
     };
 
     return (
