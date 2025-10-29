@@ -1,25 +1,20 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { createPngDataUri } from 'unlazy/thumbhash';
 
 const PropertyCardBlurPlaceholder = ({ src, alt, thumbhash }) => {
     const [imageSrc, setImageSrc] = useState(src);
-    const [key, setKey] = useState(0);
-
-    useEffect(() => {
-        setImageSrc(src);
-        setKey((prevKey) => prevKey + 1);
-    }, [src]);
+    const [, setKey] = useState(0);
 
     const handleError = () => {
         setImageSrc('/images/placeholder.svg');
+        setKey((prevKey) => prevKey + 1);
     };
 
     return (
         <Image
-            key={key}
             src={imageSrc}
             alt={alt}
             width={0}
